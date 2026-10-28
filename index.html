@@ -25,7 +25,7 @@
             position: relative;
         }
 
-        /* خلفية الماتريكس */
+        /* خلفية الماتريكس الخفيفة */
         .matrix-bg {
             position: absolute;
             top: 0;
@@ -34,7 +34,7 @@
             height: 100%;
             overflow: hidden;
             z-index: 1;
-            opacity: 0.18;
+            opacity: 0.12;
             pointer-events: none;
             display: flex;
             justify-content: space-around;
@@ -43,7 +43,7 @@
         .matrix-column {
             color: #FF3399;
             font-family: monospace;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             writing-mode: vertical-rl;
             text-orientation: upright;
             animation: fall linear infinite;
@@ -56,157 +56,164 @@
 
         .container {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             z-index: 2;
             position: relative;
-            max-width: 500px;
-            width: 90%;
+            max-width: 480px;
+            width: 92%;
         }
 
-        /* تصميم الكارت العام */
+        /* كارت التصميم المطابق للصورة تماماً */
         .book-card {
-            background: rgba(15, 15, 25, 0.88);
-            border: 2px solid rgba(255, 51, 153, 0.6);
-            box-shadow: 0 0 35px rgba(255, 51, 153, 0.4);
+            background: rgba(12, 12, 20, 0.92);
+            border: 2px solid #ff007f;
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.45);
             border-radius: 24px;
-            padding: 35px 20px;
-            min-height: 380px;
+            padding: 25px 20px;
+            min-height: 420px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             position: relative;
-            backdrop-filter: blur(6px);
+            backdrop-filter: blur(8px);
         }
 
-        /* شاشة العد التنازلي المقفولة */
-        .lock-screen h2 {
-            font-size: 1.1rem;
+        /* شريط العد التنازلي العلوي */
+        .top-timer-badge {
+            background: rgba(255, 0, 127, 0.12);
+            border: 1px solid rgba(255, 0, 127, 0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
             color: #ff3399;
-            margin-bottom: 25px;
-            font-weight: 700;
+            margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        .countdown-box {
-            background: rgba(255, 51, 153, 0.1);
-            border: 1px solid #ff3399;
-            padding: 12px 20px;
-            border-radius: 30px;
-            font-size: 1rem;
+        /* القلب الضخم المنور وجواه الاسم */
+        .heart-box {
+            position: relative;
+            width: 150px;
+            height: 135px;
+            margin: 5px auto 15px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulseHeart 1.2s infinite ease-in-out;
+        }
+
+        .heart-box svg {
+            width: 100%;
+            height: 100%;
+            fill: #ff007f;
+            filter: drop-shadow(0 0 22px #ff007f);
+        }
+
+        .heart-name {
+            position: absolute;
             color: #fff;
-            margin-bottom: 25px;
-            box-shadow: 0 0 15px rgba(255, 51, 153, 0.2);
+            font-size: 1.25rem;
+            font-weight: 700;
+            font-style: italic;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
             letter-spacing: 1px;
         }
 
-        .bypass-input {
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid #ff3399;
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 12px;
-            text-align: center;
-            outline: none;
-            font-size: 0.95rem;
-            width: 80%;
-            max-width: 240px;
-            box-shadow: 0 0 10px rgba(255, 51, 153, 0.3);
-            margin-top: 10px;
-        }
-
-        .bypass-input::placeholder {
-            color: rgba(255, 51, 153, 0.5);
-        }
-
-        /* القلب القديم الأصلي */
-        .heart-container {
-            position: relative;
-            width: 130px;
-            height: 120px;
-            margin: 0 auto 20px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: heartbeat 1.2s infinite;
-        }
-
-        .heart-container svg {
-            width: 100%;
-            height: 100%;
-            fill: #FF3399;
-            filter: drop-shadow(0 0 20px #FF3399);
-        }
-
-        .heart-text {
-            position: absolute;
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 700;
-            font-style: italic;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        @keyframes heartbeat {
+        @keyframes pulseHeart {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.08); }
         }
 
-        /* نصوص الشعر */
+        /* نص بيت الشعر */
         .poem-text {
-            font-size: 1.2rem;
-            line-height: 2.2;
+            font-size: 1.15rem;
+            line-height: 2.1;
             color: #FFF;
-            text-shadow: 0 0 10px rgba(255, 51, 153, 0.6);
-            margin-bottom: 25px;
-            min-height: 90px;
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
+            margin: 10px 0 20px 0;
+            min-height: 85px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            font-weight: 700;
         }
 
-        /* أزرار التنقل */
+        /* أزرار التنقل (التالي / السابق) */
         .nav-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             width: 100%;
             justify-content: center;
+            margin-bottom: 10px;
         }
 
         .btn {
-            background: #FF3399;
+            background: #ff007f;
             color: #FFF;
             border: none;
-            padding: 10px 25px;
-            font-size: 1rem;
+            padding: 10px 28px;
+            font-size: 0.95rem;
             font-weight: 700;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 51, 153, 0.6);
+            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
             transition: 0.3s;
         }
 
         .btn:hover {
             transform: scale(1.05);
-            background: #ff1a8c;
+            background: #ff3399;
         }
 
         .btn-secondary {
             background: transparent;
-            border: 2px solid #FF3399;
-            color: #FF3399;
+            border: 2px solid #ff007f;
+            color: #ff007f;
         }
 
         .btn-secondary:hover {
-            background: rgba(255, 51, 153, 0.1);
+            background: rgba(255, 0, 127, 0.15);
             color: #fff;
         }
 
+        /* عداد الصفحات السفلي */
         .page-indicator {
-            margin-top: 20px;
             font-size: 0.85rem;
             color: #ff3399;
             letter-spacing: 1px;
+            margin-top: 5px;
+            font-weight: 700;
+        }
+
+        /* خانة الباسورد السرية للمطور تحت شاشة القفل */
+        .dev-pass-box {
+            margin-top: 15px;
+            width: 100%;
+            border-top: 1px dashed rgba(255, 0, 127, 0.4);
+            padding-top: 12px;
+        }
+
+        .bypass-input {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #ff007f;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-align: center;
+            outline: none;
+            font-size: 0.9rem;
+            width: 85%;
+            max-width: 220px;
+            box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);
+        }
+
+        .bypass-input::placeholder {
+            color: rgba(255, 0, 127, 0.5);
         }
     </style>
 </head>
@@ -216,102 +223,107 @@
     <div class="matrix-bg" id="matrixBg"></div>
 
     <div class="container">
-        <!-- الشاشة المقفولة والعد التنازلي -->
-        <div class="book-card" id="lockScreen">
-            <div class="lock-screen">
-                <div class="heart-container" style="transform: scale(0.8); margin-bottom: 10px;">
-                    <svg viewBox="0 0 32 29.6">
-                        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
-                        c6.5-9.3,16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-                    </svg>
-                    <span class="heart-text">jomana</span>
-                </div>
-                <h2>انتظار يوم الميلاد ✨</h2>
-                <div class="countdown-box" id="countdownTimer">جاري الحساب...</div>
-                <div style="font-size: 0.8rem; color: #aaa; margin-bottom: 5px;">أو أدخل كلمة المرور للتجربة:</div>
-                <input type="text" id="devPass" class="bypass-input" placeholder="Password..." oninput="checkDevPass()">
+        <!-- الكارت الأساسي (يتحكم فيه العد التنازلي أو كلمة المرور) -->
+        <div class="book-card" id="mainCard">
+            
+            <!-- شريط العد التنازلي العلوي -->
+            <div class="top-timer-badge" id="topTimer">
+                ⏳ جاري حساب الوقت...
             </div>
-        </div>
 
-        <!-- شاشة محتوى الصفحات (مخفية حتى يفتح) -->
-        <div class="book-card" id="contentScreen" style="display: none;">
-            <div class="heart-container">
+            <!-- القلب والاسم -->
+            <div class="heart-box">
                 <svg viewBox="0 0 32 29.6">
                     <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
                     c6.5-9.3,16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/>
                 </svg>
-                <span class="heart-text">jomana</span>
+                <span class="heart-name">jomana</span>
             </div>
 
-            <div class="poem-text" id="poemText">
-                <!-- النص يتغير هنا بالترتيب -->
+            <!-- نص الشعر أو المعايدة المتغير -->
+            <div class="poem-text" id="dynamicText">
+                <!-- يتم تعبئته بواسطة الجافاسكريبت -->
             </div>
 
+            <!-- أزرار التنقل -->
             <div class="nav-buttons" id="navButtons">
-                <button class="btn btn-secondary" id="prevBtn" onclick="changePage(-1)" style="display: none;">السابق</button>
+                <button class="btn btn-secondary" id="prevBtn" onclick="changePage(-1)">السابق</button>
                 <button class="btn" id="nextBtn" onclick="changePage(1)">التالي ⬅</button>
             </div>
 
-            <div class="page-indicator" id="pageIndicator">صفحة 1 من 4</div>
+            <!-- العداد السفلي + خانة الباسورد السرية -->
+            <div>
+                <div class="page-indicator" id="pageIndicator">صفحة 1 من 6</div>
+                
+                <!-- خانة الباسورد السرية للمطور تحت العرض -->
+                <div class="dev-pass-box" id="devPassSection">
+                    <input type="text" id="devPass" class="bypass-input" placeholder="Password..." oninput="checkDevPass()">
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script>
-        // توليد تأثير الماتريكس
+        // تأثير الماتريكس في الخلفية
         const matrixBg = document.getElementById('matrixBg');
         const chars = "JOMANA 2026 ♥ 1129";
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 14; i++) {
             const col = document.createElement('div');
             col.className = 'matrix-column';
-            col.style.animationDuration = (3 + Math.random() * 5) + 's';
-            col.style.animationDelay = (Math.random() * 3) + 's';
+            col.style.animationDuration = (3 + Math.random() * 4) + 's';
+            col.style.animationDelay = (Math.random() * 2) + 's';
             let text = "";
-            for (let j = 0; j < 20; j++) {
+            for (let j = 0; j < 18; j++) {
                 text += chars.charAt(Math.floor(Math.random() * chars.length)) + "<br>";
             }
             col.innerHTML = text;
             matrixBg.appendChild(col);
         }
 
-        // صفحات الشعر والمعايدة
+        // صفحة الشعر والترتيب بالظبط لكل بيت في صفحة + الصفحة الأخيرة المعايدة
         const pages = [
-            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نال مني ما نالتْهُ عيناكِ",
+            "ما زلتُ أخشى في هواكِ مشاعري.. وأخاف من قلبي وفرط حناني",
+            "أخشى عليكِ من المحبة إن طغت.. وأخاف أن يؤذيك فيض اهتمامي",
+            "يا من سكنتِ قلبي رِفقاً بالحشى.. فالخوف يقتلني وأنتِ أمامي",
+            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نال مني ما نالتْهُ عيناكِ[span_1](start_span)[span_1](end_span)",
             "أغزلها وأسرف في هواها.. كأن الله لم يخلق سواها",
-            "ولو عينيَّ رأت وجهاً جميلاً.. فإني دون ما وعي أراها، لكن بقلبي... ❤️",
             "كل سنة وأنتي طيبة يا جومانا 🎉✨"
         ];
 
         let currentPage = 0;
+        let isUnlocked = false; // يحدد إذا ميعاد العيد جه أو تم كتابة الباسورد
 
-        function updatePage() {
-            document.getElementById('poemText').innerText = pages[currentPage];
+        function renderPage() {
+            document.getElementById('dynamicText').innerText = pages[currentPage];
             document.getElementById('pageIndicator').innerText = `صفحة ${currentPage + 1} من ${pages.length}`;
             
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
 
+            // إظهار أو إخفاء زر السابق
             if (currentPage === 0) {
                 prevBtn.style.display = 'none';
             } else {
                 prevBtn.style.display = 'block';
             }
 
+            // إظهار أو إخفاء زر التالي في الصفحة الأخيرة
             if (currentPage === pages.length - 1) {
-                nextBtn.style.display = 'none'; // إخفاء التالي في الصفحة الأخيرة لتكون النهاية المعايدة
+                nextBtn.style.display = 'none';
             } else {
                 nextBtn.style.display = 'block';
-                nextBtn.innerHTML = "التالي ⬅";
             }
         }
 
         function changePage(direction) {
             currentPage += direction;
             if (currentPage >= 0 && currentPage < pages.length) {
-                updatePage();
+                renderPage();
             }
         }
 
-        // العد التنازلي لـ 29 نوفمبر 2026
+        // العد التنازلي المستمر (ميعاد عيد الميلاد 29 نوفمبر 2026)
         const targetDate = new Date('November 29, 2026 00:00:00').getTime();
 
         function updateCountdown() {
@@ -328,13 +340,15 @@
             const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const secs = Math.floor((difference % (1000 * 60)) / 1000);
 
-            document.getElementById('countdownTimer').innerText = `باقي لعيد الميلاد: ${days} يوم ${hours}س ${mins}د ${secs}ث ⏳`;
+            if (!isUnlocked) {
+                document.getElementById('topTimer').innerHTML = `باقي لعيد الميلاد: ${days} يوم ${hours}س ${mins}د ${secs}ث ⏳`;
+            }
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // كلمة المرور السرية للمطور
+        // كلمة المرور السرية للمطور (تفتح الموقع فوراً للتجربة)
         const MY_SECRET_PASS = "you're my love";
 
         function checkDevPass() {
@@ -345,10 +359,15 @@
         }
 
         function unlockSite() {
-            document.getElementById('lockScreen').style.display = 'none';
-            document.getElementById('contentScreen').style.display = 'flex';
-            updatePage();
+            isUnlocked = true;
+            // إخفاء شريط العد التنازلي العلوي وخانة الباسورد عند الفتح الحقيقي أو بالباسورد
+            document.getElementById('topTimer').style.display = 'none';
+            document.getElementById('devPassSection').style.display = 'none';
+            renderPage();
         }
+
+        // الحالة الابتدائية قبل إدخال الباسورد (تعرض أول بيت شعر كمثال أو شاشة قفل، وهنا جعلناها تعرض الصفحات مع وجود خانة الباسورد تحت للتجربة السريعة)
+        renderPage();
     </script>
 </body>
 </html>
