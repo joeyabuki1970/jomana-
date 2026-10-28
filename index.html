@@ -3,153 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Jomana 💖</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>JOMANA | SPECIAL GIFT</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Cairo', sans-serif;
-        }
-        body {
-            background-color: #050505;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        /* خلفية تأثير الماتريكس بكلمة LOVE YOU */
-        .matrix-bg {
-            position: absolute;
+        body {
+            background-color: #050005;
+            color: #ff007f;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Matrix Rain Canvas */
+        #matrixCanvas {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
             z-index: 1;
-            opacity: 0.18;
-            pointer-events: none;
-            display: flex;
-            justify-content: space-around;
-        }
-        .matrix-column {
-            color: #ff3399;
-            font-family: monospace;
-            font-size: 1.2rem;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
+            opacity: 0.35;
         }
 
         .container {
-            text-align: center;
-            padding: 20px;
-            z-index: 2;
             position: relative;
-            max-width: 500px;
+            z-index: 10;
+            text-align: center;
+            padding: 2rem;
             width: 90%;
+            max-width: 600px;
+            background: rgba(10, 0, 10, 0.85);
+            border: 2px solid #ff007f;
+            box-shadow: 0 0 25px #ff007f, inset 0 0 15px #ff007f;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
         }
 
-        /* تصميم الكارت العام */
-        .book-card {
-            background: rgba(15, 15, 25, 0.88);
-            border: 2px solid rgba(255, 51, 153, 0.6);
-            box-shadow: 0 0 35px rgba(255, 51, 153, 0.4);
-            border-radius: 24px;
-            padding: 35px 20px;
-            min-height: 380px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            backdrop-filter: blur(8px);
-        }
-
-        /* شاشة العد التنازلي المقفولة */
-        #lockScreen {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .lock-title {
-            font-size: 1.3rem;
-            color: #ffb3d9;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 51, 153, 0.5);
-        }
-
-        .countdown-timer {
-            font-size: 1.4rem;
-            color: #ff3399;
-            font-weight: 900;
-            background: rgba(255, 51, 153, 0.1);
-            border: 1.5px solid rgba(255, 51, 153, 0.4);
-            padding: 15px 20px;
-            border-radius: 20px;
-            text-shadow: 0 0 15px #ff3399;
-            margin-bottom: 20px;
-            direction: ltr;
-            letter-spacing: 2px;
-        }
-
-        .lock-subtitle {
-            font-size: 1rem;
-            color: #ff99cc;
-            opacity: 0.9;
-        }
-
-        /* محتوى الكتاب */
-        #contentScreen {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
-
-        /* حاوية القلب النيون النابض والاسم جواه */
-        .heart-wrapper {
-            position: relative;
-            width: 120px;
-            height: 110px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Heart Style */
+        .heart-box {
+            font-size: 80px;
+            color: #ff007f;
+            text-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
             animation: pulse 1.2s infinite ease-in-out;
-        }
-
-        .heart-svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 10px #ff1a75) drop-shadow(0 0 25px #ff3399);
-        }
-
-        .heart-name-inside {
-            position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Brush Script MT', cursive, sans-serif;
-            font-size: 1.3rem;
-            color: #ffffff;
-            text-shadow: 0 0 8px #ff3399, 0 0 15px #ff1a75;
-            white-space: nowrap;
-            pointer-events: none;
+            margin-bottom: 15px;
         }
 
         @keyframes pulse {
@@ -158,172 +62,244 @@
             100% { transform: scale(1); }
         }
 
-        /* نص الشعر والصفحات */
-        .page-content {
-            font-size: 1.2rem;
-            color: #ffb3d9;
-            font-weight: 700;
-            line-height: 1.8;
-            text-shadow: 0 0 12px rgba(255, 51, 153, 0.6);
+        h1 {
+            font-size: 1.8rem;
             margin-bottom: 20px;
-            min-height: 90px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.3s ease-in-out;
-            text-align: center;
-        }
-
-        /* أزرار التنقل */
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .btn {
-            background: rgba(255, 51, 153, 0.15);
-            border: 1.5px solid #ff3399;
             color: #fff;
-            padding: 8px 22px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 12px rgba(255, 51, 153, 0.3);
+            text-shadow: 0 0 10px #ff007f;
+            letter-spacing: 2px;
         }
 
-        .btn:hover {
-            background: #ff3399;
-            box-shadow: 0 0 25px #ff3399;
-            transform: translateY(-3px);
+        /* Countdown Grid */
+        .countdown-grid {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            direction: ltr;
         }
 
-        .page-indicator {
-            margin-top: 12px;
+        .time-box {
+            background: rgba(255, 0, 127, 0.1);
+            border: 1px solid #ff007f;
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 65px;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.3);
+        }
+
+        .time-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 8px #ff007f;
+        }
+
+        .time-label {
+            font-size: 0.75rem;
+            color: #ff007f;
+            margin-top: 4px;
+        }
+
+        /* Dev Bypass Input */
+        .bypass-section {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 0, 127, 0.4);
+        }
+
+        .bypass-input {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #ff007f;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-align: center;
+            outline: none;
             font-size: 0.9rem;
-            color: #ff99cc;
-            font-weight: 700;
-            text-shadow: 0 0 8px rgba(255, 51, 153, 0.4);
+            width: 220px;
+            box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);
+        }
+
+        .bypass-input::placeholder {
+            color: rgba(255, 0, 127, 0.6);
+        }
+
+        /* Poetry Gift Content */
+        #secretContent {
+            display: none;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .poem-text {
+            color: #fff;
+            font-size: 1.2rem;
+            line-height: 2.2;
+            text-shadow: 0 0 10px #ff007f;
+            margin: 20px 0;
+            white-space: pre-line;
+        }
+
+        .music-btn {
+            background: #ff007f;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 15px #ff007f;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.05);
+            background: #ff3399;
         }
     </style>
 </head>
 <body>
 
-    <!-- خلفية تأثير الماتريكس بكلمة LOVE YOU -->
-    <div class="matrix-bg">
-        <div class="matrix-column" style="animation-duration: 3.5s;">LOVE YOU ❤️ LOVE YOU</div>
-        <div class="matrix-column" style="animation-duration: 5s;">LOVE YOU ✨ LOVE YOU</div>
-        <div class="matrix-column" style="animation-duration: 4.2s;">LOVE YOU 💖 LOVE YOU</div>
-        <div class="matrix-column" style="animation-duration: 6s;">LOVE YOU ⭐ LOVE YOU</div>
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- LOCKED SCREEN -->
+    <div class="container" id="lockScreen">
+        <div class="heart-box">♥</div>
+        <h1>WAITING FOR JOMANA'S DAY</h1>
+        
+        <div class="countdown-grid">
+            <div class="time-box">
+                <div class="time-number" id="days">00</div>
+                <div class="time-label">DAYS</div>
+            </div>
+            <div class="time-box">
+                <div class="time-number" id="hours">00</div>
+                <div class="time-label">HOURS</div>
+            </div>
+            <div class="time-box">
+                <div class="time-number" id="minutes">00</div>
+                <div class="time-label">MINS</div>
+            </div>
+            <div class="time-box">
+                <div class="time-number" id="seconds">00</div>
+                <div class="time-label">SECS</div>
+            </div>
+        </div>
+
+        <!-- Dev Password Test -->
+        <div class="bypass-section">
+            <input type="text" id="devPass" class="bypass-input" placeholder="Password..." oninput="checkDevPass()">
+        </div>
     </div>
 
-    <div class="container">
-        <div class="book-card">
+    <!-- UNLOCKED GIFT SCREEN -->
+    <div class="container" id="secretContent">
+        <div class="heart-box">💖</div>
+        <h1>كل سنة وأنتي طيبة يا جومانا 🎉✨</h1>
+        
+        <div class="poem-text">
+            في عيد ميلادك يُزهر العمر نَغَماً،
+            وتَبْتَسِمُ الأَيَّامُ إِذْ أَنْتِ فِيهَا...
             
-            <!-- 1. شاشة قفل العد التنازلي -->
-            <div id="lockScreen">
-                <div class="lock-title">🔐 المفاجأة دي هتفتح يوم</div>
-                <div class="countdown-timer" id="timerDisplay">00d 00h 00m 00s</div>
-                <div class="lock-subtitle">انتظر لتحصل علي مكفائتك ✨</div>
-            </div>
-
-            <!-- 2. محتوى الكتاب والشعر -->
-            <div id="contentScreen">
-                <div class="heart-wrapper">
-                    <svg class="heart-svg" viewBox="0 0 32 29.6">
-                        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2s16-11.8,16-21.2 C32,3.8,28.2,0,23.6,0z" fill="#ff1a75"/>
-                    </svg>
-                    <div class="heart-name-inside">𝓳𝓸𝓶𝓪𝓷𝓪</div>
-                </div>
-                
-                <div id="textContent" class="page-content"></div>
-                
-                <div class="nav-buttons">
-                    <button class="btn" id="prevBtn" onclick="changePage(-1)" style="display: none;">السابق</button>
-                    <button class="btn" id="nextBtn" onclick="changePage(1)">التالي ➡</button>
-                </div>
-            </div>
-
+            كل عام وأنتي أرق وأجمل إنسانة ❤️
         </div>
-        <div class="page-indicator" id="pageIndicator" style="display: none;">صفحة 1 من 6</div>
+
+        <button class="music-btn" onclick="toggleAudio()">🎵 شغل الموسيقى</button>
+        <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=slowed-guitar-113532.mp3"></audio>
     </div>
 
     <script>
-        // تاريخ عيد ميلاد جومانا 29 نوفمبر 2026
-        const targetDate = new Date("November 29, 2026 00:00:00").getTime();
+        // Matrix Background
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
 
-        function checkCountdown() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = "LOVE YOU JOMANA 1129 ♥ 01";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(5, 0, 5, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#ff007f';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 35);
+
+        // Countdown Logic (29 Nov 2026)
+        const targetDate = new Date('November 29, 2026 00:00:00').getTime();
+
+        function updateCountdown() {
             const now = new Date().getTime();
-            const distance = targetDate - now;
+            const difference = targetDate - now;
 
-            // لو عايز تختبرها دلوقتي وتفتح الموقع غصب عن الوقت، شيل علامتين الـ // من السطر اللي تحت
-            // if (true) {
-            if (distance <= 0) {
-                document.getElementById('lockScreen').style.display = 'none';
-                document.getElementById('contentScreen').style.display = 'flex';
-                document.getElementById('pageIndicator').style.display = 'block';
-                updateBook();
-            } else {
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            if (difference <= 0) {
+                unlockContent();
+                return;
+            }
 
-                document.getElementById('timerDisplay').innerHTML = 
-                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            const d = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const h = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(d).padStart(2, '0');
+            document.getElementById('hours').innerText = String(h).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(m).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(s).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // DEV SECRET PASSWORD
+        const MY_SECRET_PASS = "you're my love";
+
+        function checkDevPass() {
+            const inputVal = document.getElementById('devPass').value.trim().toLowerCase();
+            if (inputVal === MY_SECRET_PASS.toLowerCase()) {
+                unlockContent();
             }
         }
 
-        setInterval(checkCountdown, 1000);
-        checkCountdown();
+        function unlockContent() {
+            document.getElementById('lockScreen').style.display = 'none';
+            document.getElementById('secretContent').style.display = 'block';
+        }
 
-        const pages = [
-            "لا السيفُ يفعل بي ما أنتِ فاعلةً.. ولا لقاءُ عدوٍ مثلُ لقيَاكِ",
-            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نالَ مني ما نالتْهُ عيناكِ",
-            "أغزلُها وأسرفُ في هواها.. كأن الله لم يخلق سواها",
-            "ولوعيني رأت وجهاً جميلا.. فإني دون ما وعي أراها",
-            "يا من سكنت في قلبي رفقة بالحشا.. فالخوف يقتلني وأنت أمامتي",
-            "كل سنة وأنتي طيبة يا جومانا 🌹🫀"
-        ];
-
-        let currentPage = 0;
-        const textContent = document.getElementById('textContent');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const pageIndicator = document.getElementById('pageIndicator');
-
-        function updateBook() {
-            textContent.style.opacity = 0;
-            setTimeout(() => {
-                textContent.innerHTML = pages[currentPage];
-                textContent.style.opacity = 1;
-            }, 200);
-
-            pageIndicator.innerHTML = `صفحة ${currentPage + 1} من ${pages.length}`;
-
-            if (currentPage === 0) {
-                prevBtn.style.display = 'none';
+        // Audio Toggle
+        function toggleAudio() {
+            const audio = document.getElementById('bgAudio');
+            if (audio.paused) {
+                audio.play();
             } else {
-                prevBtn.style.display = 'inline-block';
-            }
-
-            if (currentPage === pages.length - 1) {
-                nextBtn.innerHTML = 'من الأول ↺';
-            } else {
-                nextBtn.innerHTML = 'التالي ➡';
+                audio.pause();
             }
         }
 
-        function changePage(direction) {
-            currentPage += direction;
-            if (currentPage >= pages.length) {
-                currentPage = 0;
-            }
-            updateBook();
-        }
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
