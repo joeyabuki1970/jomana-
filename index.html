@@ -63,7 +63,7 @@
             width: 92%;
         }
 
-        /* كارت التصميم المطابق للصورة تماماً */
+        /* كارت التصميم */
         .book-card {
             background: rgba(12, 12, 20, 0.92);
             border: 2px solid #ff007f;
@@ -79,7 +79,7 @@
             backdrop-filter: blur(8px);
         }
 
-        /* شريط العد التنازلي (أرقام فقط بدون أي كلمات توحي بالمناسبة) */
+        /* شريط العد التنازلي أرقام فقط */
         .top-timer-badge {
             background: rgba(255, 0, 127, 0.12);
             border: 1px solid rgba(255, 0, 127, 0.5);
@@ -145,7 +145,7 @@
             font-weight: 700;
         }
 
-        /* خانة الباسورد السرية المدمجة */
+        /* خانة الباسورد السرية */
         .dev-pass-input {
             background: rgba(0, 0, 0, 0.75);
             border: 1px solid #ff007f;
@@ -165,7 +165,7 @@
             color: rgba(255, 0, 127, 0.6);
         }
 
-        /* أزرار التنقل (التالي / السابق) */
+        /* أزرار التنقل */
         .nav-buttons {
             display: flex;
             gap: 12px;
@@ -203,6 +203,23 @@
             color: #fff;
         }
 
+        /* زر تشغيل الموسيقى بعد فتح الموقع */
+        .music-btn {
+            background: linear-gradient(45deg, #ff007f, #ff3399);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         /* عداد الصفحات السفلي */
         .page-indicator {
             font-size: 0.85rem;
@@ -225,10 +242,13 @@
     <div class="container">
         <div class="book-card" id="mainCard">
             
-            <!-- شريط العد التنازلي بالأرقام فقط -->
+            <!-- شريط العد التنازلي -->
             <div class="top-timer-badge" id="topTimer">
                 ⏳ 00d 00h 00m 00s
             </div>
+
+            <!-- زر تشغيل الموسيقى (يظهر فقط بعد فتح الموقع) -->
+            <button class="music-btn" id="musicBtn" style="display: none;" onclick="toggleMusic()">🎵 تشغيل الموسيقى</button>
 
             <!-- القلب والاسم -->
             <div class="heart-box">
@@ -285,16 +305,27 @@
 
         let currentPage = 0;
         let isUnlocked = false;
+        let isPlaying = false;
 
         // كلمة المرور السرية
         const MY_SECRET_PASS = "you're my love";
 
-        function startMusic() {
+        function toggleMusic() {
             const audio = document.getElementById('bgAudio');
+            const musicBtn = document.getElementById('musicBtn');
             if (audio) {
-                audio.play().catch(e => {
-                    console.log("Audio play waiting for interaction");
-                });
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    musicBtn.innerHTML = "🎵 تشغيل الموسيقى";
+                } else {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        musicBtn.innerHTML = "⏸ إيقاف الموسيقى";
+                    }).catch(e => {
+                        console.log("Play blocked");
+                    });
+                }
             }
         }
 
@@ -303,9 +334,11 @@
             const navButtons = document.getElementById('navButtons');
             const pageIndicator = document.getElementById('pageIndicator');
             const topTimer = document.getElementById('topTimer');
+            const musicBtn = document.getElementById('musicBtn');
 
             if (!isUnlocked) {
                 topTimer.style.display = 'inline-flex';
+                musicBtn.style.display = 'none';
                 navButtons.style.display = 'none';
                 pageIndicator.style.display = 'none';
                 
@@ -317,6 +350,7 @@
                 `;
             } else {
                 topTimer.style.display = 'none';
+                musicBtn.style.display = 'inline-flex';
                 navButtons.style.display = 'flex';
                 pageIndicator.style.display = 'block';
 
@@ -341,14 +375,13 @@
         }
 
         function changePage(direction) {
-            startMusic();
             currentPage += direction;
             if (currentPage >= 0 && currentPage < pages.length) {
                 renderSite();
             }
         }
 
-        // حساب العد التنازلي الحقيقي لـ 29 نوفمبر 2026 (أرقام فقط بدون كلمات)
+        // عداد الوقت
         const targetDate = new Date('November 29, 2026 00:00:00').getTime();
 
         function updateCountdown() {
@@ -383,14 +416,18 @@
         function unlockSite() {
             isUnlocked = true;
             renderSite();
-            startMusic(); // تشغيل الأغنية فور إدخال الباسورد بنجاح
-        }
-
-        document.addEventListener('click', () => {
-            if (isUnlocked) {
-                startMusic();
+            // محاولة التشغيل التلقائي فور إدخال الباسورد
+            const audio = document.getElementById('bgAudio');
+            const musicBtn = document.getElementById('musicBtn');
+            if (audio) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.innerHTML = "⏸ إيقاف الموسيقى";
+                }).catch(e => {
+                    console.log("Auto-play restricted by browser, user can click the music button");
+                });
             }
-        });
+        }
 
         renderSite();
     </script>
