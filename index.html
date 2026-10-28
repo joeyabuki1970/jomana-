@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jomana 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background-color: #050505;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* خلفية تأثير الماتريكس بكلمة LOVE YOU */
+        .matrix-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0.18;
+            pointer-events: none;
+            display: flex;
+            justify-content: space-around;
+        }
+        .matrix-column {
+            color: #ff3399;
+            font-family: monospace;
+            font-size: 1.2rem;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            z-index: 2;
+            position: relative;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        /* تصميم الكارت العام */
+        .book-card {
+            background: rgba(15, 15, 25, 0.88);
+            border: 2px solid rgba(255, 51, 153, 0.6);
+            box-shadow: 0 0 35px rgba(255, 51, 153, 0.4);
+            border-radius: 24px;
+            padding: 35px 20px;
+            min-height: 380px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+
+        /* شاشة العد التنازلي المقفولة */
+        #lockScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .lock-title {
+            font-size: 1.3rem;
+            color: #ffb3d9;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 51, 153, 0.5);
+        }
+
+        .countdown-timer {
+            font-size: 1.4rem;
+            color: #ff3399;
+            font-weight: 900;
+            background: rgba(255, 51, 153, 0.1);
+            border: 1.5px solid rgba(255, 51, 153, 0.4);
+            padding: 15px 20px;
+            border-radius: 20px;
+            text-shadow: 0 0 15px #ff3399;
+            margin-bottom: 20px;
+            direction: ltr;
+            letter-spacing: 2px;
+        }
+
+        .lock-subtitle {
+            font-size: 1rem;
+            color: #ff99cc;
+            opacity: 0.9;
+        }
+
+        /* محتوى الكتاب */
+        #contentScreen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* حاوية القلب النيون النابض والاسم جواه */
+        .heart-wrapper {
+            position: relative;
+            width: 120px;
+            height: 110px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 1.2s infinite ease-in-out;
+        }
+
+        .heart-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 10px #ff1a75) drop-shadow(0 0 25px #ff3399);
+        }
+
+        .heart-name-inside {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Brush Script MT', cursive, sans-serif;
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px #ff3399, 0 0 15px #ff1a75;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        /* نص الشعر والصفحات */
+        .page-content {
+            font-size: 1.2rem;
+            color: #ffb3d9;
+            font-weight: 700;
+            line-height: 1.8;
+            text-shadow: 0 0 12px rgba(255, 51, 153, 0.6);
+            margin-bottom: 20px;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        /* أزرار التنقل */
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .btn {
+            background: rgba(255, 51, 153, 0.15);
+            border: 1.5px solid #ff3399;
+            color: #fff;
+            padding: 8px 22px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px rgba(255, 51, 153, 0.3);
+        }
+
+        .btn:hover {
+            background: #ff3399;
+            box-shadow: 0 0 25px #ff3399;
+            transform: translateY(-3px);
+        }
+
+        .page-indicator {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #ff99cc;
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(255, 51, 153, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- خلفية تأثير الماتريكس بكلمة LOVE YOU -->
+    <div class="matrix-bg">
+        <div class="matrix-column" style="animation-duration: 3.5s;">LOVE YOU ❤️ LOVE YOU</div>
+        <div class="matrix-column" style="animation-duration: 5s;">LOVE YOU ✨ LOVE YOU</div>
+        <div class="matrix-column" style="animation-duration: 4.2s;">LOVE YOU 💖 LOVE YOU</div>
+        <div class="matrix-column" style="animation-duration: 6s;">LOVE YOU ⭐ LOVE YOU</div>
+    </div>
+
+    <div class="container">
+        <div class="book-card">
+            
+            <!-- 1. شاشة قفل العد التنازلي -->
+            <div id="lockScreen">
+                <div class="lock-title">🔐 المفاجأة دي هتفتح يوم</div>
+                <div class="countdown-timer" id="timerDisplay">00d 00h 00m 00s</div>
+                <div class="lock-subtitle">انتظر لتحصل علي مكفائتك ✨</div>
+            </div>
+
+            <!-- 2. محتوى الكتاب والشعر -->
+            <div id="contentScreen">
+                <div class="heart-wrapper">
+                    <svg class="heart-svg" viewBox="0 0 32 29.6">
+                        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,16,21.2,16,21.2s16-11.8,16-21.2 C32,3.8,28.2,0,23.6,0z" fill="#ff1a75"/>
+                    </svg>
+                    <div class="heart-name-inside">𝓳𝓸𝓶𝓪𝓷𝓪</div>
+                </div>
+                
+                <div id="textContent" class="page-content"></div>
+                
+                <div class="nav-buttons">
+                    <button class="btn" id="prevBtn" onclick="changePage(-1)" style="display: none;">السابق</button>
+                    <button class="btn" id="nextBtn" onclick="changePage(1)">التالي ➡</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="page-indicator" id="pageIndicator" style="display: none;">صفحة 1 من 6</div>
+    </div>
+
+    <script>
+        // تاريخ عيد ميلاد جومانا 29 نوفمبر 2026
+        const targetDate = new Date("November 29, 2026 00:00:00").getTime();
+
+        function checkCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            // لو عايز تختبرها دلوقتي وتفتح الموقع غصب عن الوقت، شيل علامتين الـ // من السطر اللي تحت
+            // if (true) {
+            if (distance <= 0) {
+                document.getElementById('lockScreen').style.display = 'none';
+                document.getElementById('contentScreen').style.display = 'flex';
+                document.getElementById('pageIndicator').style.display = 'block';
+                updateBook();
+            } else {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('timerDisplay').innerHTML = 
+                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        }
+
+        setInterval(checkCountdown, 1000);
+        checkCountdown();
+
+        const pages = [
+            "لا السيفُ يفعل بي ما أنتِ فاعلةً.. ولا لقاءُ عدوٍ مثلُ لقيَاكِ",
+            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نالَ مني ما نالتْهُ عيناكِ",
+            "أغزلُها وأسرفُ في هواها.. كأن الله لم يخلق سواها",
+            "ولوعيني رأت وجهاً جميلا.. فإني دون ما وعي أراها",
+            "يا من سكنت في قلبي رفقة بالحشا.. فالخوف يقتلني وأنت أمامتي",
+            "كل سنة وأنتي طيبة يا جومانا 🌹🫀"
+        ];
+
+        let currentPage = 0;
+        const textContent = document.getElementById('textContent');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageIndicator = document.getElementById('pageIndicator');
+
+        function updateBook() {
+            textContent.style.opacity = 0;
+            setTimeout(() => {
+                textContent.innerHTML = pages[currentPage];
+                textContent.style.opacity = 1;
+            }, 200);
+
+            pageIndicator.innerHTML = `صفحة ${currentPage + 1} من ${pages.length}`;
+
+            if (currentPage === 0) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'inline-block';
+            }
+
+            if (currentPage === pages.length - 1) {
+                nextBtn.innerHTML = 'من الأول ↺';
+            } else {
+                nextBtn.innerHTML = 'التالي ➡';
+            }
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            if (currentPage >= pages.length) {
+                currentPage = 0;
+            }
+            updateBook();
+        }
+    </script>
+</body>
+</html>
