@@ -87,7 +87,7 @@
             border-radius: 20px;
             font-size: 0.85rem;
             color: #ff3399;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
             display: inline-flex;
             align-items: center;
@@ -99,7 +99,7 @@
             position: relative;
             width: 150px;
             height: 135px;
-            margin: 5px auto 15px auto;
+            margin: 5px auto 10px auto;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -128,19 +128,39 @@
             50% { transform: scale(1.08); }
         }
 
-        /* نص بيت الشعر */
+        /* نص بيت الشعر أو خانة الباسورد */
         .poem-text {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 2.1;
             color: #FFF;
             text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
-            margin: 10px 0 20px 0;
-            min-height: 85px;
+            margin: 5px 0 15px 0;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             font-weight: 700;
+        }
+
+        /* خانة الباسورد السرية المدمجة في التصميم للتجربة */
+        .dev-pass-input {
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid #ff007f;
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 12px;
+            text-align: center;
+            outline: none;
+            font-size: 0.9rem;
+            width: 80%;
+            max-width: 200px;
+            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .dev-pass-input::placeholder {
+            color: rgba(255, 0, 127, 0.6);
         }
 
         /* أزرار التنقل (التالي / السابق) */
@@ -149,7 +169,7 @@
             gap: 12px;
             width: 100%;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .btn {
@@ -184,36 +204,9 @@
         /* عداد الصفحات السفلي */
         .page-indicator {
             font-size: 0.85rem;
-            color: #ff3399;
+            color: #ff007f;
             letter-spacing: 1px;
-            margin-top: 5px;
             font-weight: 700;
-        }
-
-        /* خانة الباسورد السرية للمطور تحت شاشة القفل */
-        .dev-pass-box {
-            margin-top: 15px;
-            width: 100%;
-            border-top: 1px dashed rgba(255, 0, 127, 0.4);
-            padding-top: 12px;
-        }
-
-        .bypass-input {
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid #ff007f;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 10px;
-            text-align: center;
-            outline: none;
-            font-size: 0.9rem;
-            width: 85%;
-            max-width: 220px;
-            box-shadow: 0 0 8px rgba(255, 0, 127, 0.3);
-        }
-
-        .bypass-input::placeholder {
-            color: rgba(255, 0, 127, 0.5);
         }
     </style>
 </head>
@@ -223,12 +216,11 @@
     <div class="matrix-bg" id="matrixBg"></div>
 
     <div class="container">
-        <!-- الكارت الأساسي (يتحكم فيه العد التنازلي أو كلمة المرور) -->
         <div class="book-card" id="mainCard">
             
-            <!-- شريط العد التنازلي العلوي -->
+            <!-- شريط العد التنازلي العلوي المطابق للصورة -->
             <div class="top-timer-badge" id="topTimer">
-                ⏳ جاري حساب الوقت...
+                ⏳ باقي لعيد الميلاد: جاري الحساب...
             </div>
 
             <!-- القلب والاسم -->
@@ -240,9 +232,9 @@
                 <span class="heart-name">jomana</span>
             </div>
 
-            <!-- نص الشعر أو المعايدة المتغير -->
-            <div class="poem-text" id="dynamicText">
-                <!-- يتم تعبئته بواسطة الجافاسكريبت -->
+            <!-- مكان عرض الشعر أو خانة الباسورد -->
+            <div class="poem-text" id="displayArea">
+                <!-- يتم التبديل هنا -->
             </div>
 
             <!-- أزرار التنقل -->
@@ -251,15 +243,8 @@
                 <button class="btn" id="nextBtn" onclick="changePage(1)">التالي ⬅</button>
             </div>
 
-            <!-- العداد السفلي + خانة الباسورد السرية -->
-            <div>
-                <div class="page-indicator" id="pageIndicator">صفحة 1 من 6</div>
-                
-                <!-- خانة الباسورد السرية للمطور تحت العرض -->
-                <div class="dev-pass-box" id="devPassSection">
-                    <input type="text" id="devPass" class="bypass-input" placeholder="Password..." oninput="checkDevPass()">
-                </div>
-            </div>
+            <!-- العداد السفلي -->
+            <div class="page-indicator" id="pageIndicator">صفحة 1 من 6</div>
 
         </div>
     </div>
@@ -281,49 +266,74 @@
             matrixBg.appendChild(col);
         }
 
-        // صفحة الشعر والترتيب بالظبط لكل بيت في صفحة + الصفحة الأخيرة المعايدة
+        // أبيات الشعر والصفحة الأخيرة المعايدة
         const pages = [
             "ما زلتُ أخشى في هواكِ مشاعري.. وأخاف من قلبي وفرط حناني",
             "أخشى عليكِ من المحبة إن طغت.. وأخاف أن يؤذيك فيض اهتمامي",
             "يا من سكنتِ قلبي رِفقاً بالحشى.. فالخوف يقتلني وأنتِ أمامي",
-            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نال مني ما نالتْهُ عيناكِ[span_1](start_span)[span_1](end_span)",
+            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نال مني ما نالتْهُ عيناكِ",
             "أغزلها وأسرف في هواها.. كأن الله لم يخلق سواها",
             "كل سنة وأنتي طيبة يا جومانا 🎉✨"
         ];
 
         let currentPage = 0;
-        let isUnlocked = false; // يحدد إذا ميعاد العيد جه أو تم كتابة الباسورد
+        let isUnlocked = false;
 
-        function renderPage() {
-            document.getElementById('dynamicText').innerText = pages[currentPage];
-            document.getElementById('pageIndicator').innerText = `صفحة ${currentPage + 1} من ${pages.length}`;
-            
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+        // كلمة المرور السرية
+        const MY_SECRET_PASS = "you're my love";
 
-            // إظهار أو إخفاء زر السابق
-            if (currentPage === 0) {
-                prevBtn.style.display = 'none';
+        function renderSite() {
+            const displayArea = document.getElementById('displayArea');
+            const navButtons = document.getElementById('navButtons');
+            const pageIndicator = document.getElementById('pageIndicator');
+            const topTimer = document.getElementById('topTimer');
+
+            if (!isUnlocked) {
+                // وضع قفل العد التنازلي مع خانة الباسورد في نفس تصميم الكارت من غير ما يبوظ الشكل
+                topTimer.style.display = 'inline-flex';
+                navButtons.style.display = 'none';
+                pageIndicator.style.display = 'none';
+                
+                displayArea.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div style="font-size: 0.95rem; margin-bottom: 10px; color: #ff3399;">🔒 الموقع مغلق حتى الميعاد</div>
+                        <input type="text" id="devPass" class="dev-pass-input" placeholder="Password..." oninput="checkDevPass()">
+                    </div>
+                `;
             } else {
-                prevBtn.style.display = 'block';
-            }
+                // وضع عرض صفحات الشعر بعد الفتح
+                topTimer.style.display = 'none';
+                navButtons.style.display = 'flex';
+                pageIndicator.style.display = 'block';
 
-            // إظهار أو إخفاء زر التالي في الصفحة الأخيرة
-            if (currentPage === pages.length - 1) {
-                nextBtn.style.display = 'none';
-            } else {
-                nextBtn.style.display = 'block';
+                displayArea.innerText = pages[currentPage];
+                pageIndicator.innerText = `صفحة ${currentPage + 1} من ${pages.length}`;
+
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+
+                if (currentPage === 0) {
+                    prevBtn.style.display = 'none';
+                } else {
+                    prevBtn.style.display = 'block';
+                }
+
+                if (currentPage === pages.length - 1) {
+                    nextBtn.style.display = 'none';
+                } else {
+                    nextBtn.style.display = 'block';
+                }
             }
         }
 
         function changePage(direction) {
             currentPage += direction;
             if (currentPage >= 0 && currentPage < pages.length) {
-                renderPage();
+                renderSite();
             }
         }
 
-        // العد التنازلي المستمر (ميعاد عيد الميلاد 29 نوفمبر 2026)
+        // حساب العد التنازلي الحقيقي لـ 29 نوفمبر 2026
         const targetDate = new Date('November 29, 2026 00:00:00').getTime();
 
         function updateCountdown() {
@@ -341,15 +351,12 @@
             const secs = Math.floor((difference % (1000 * 60)) / 1000);
 
             if (!isUnlocked) {
-                document.getElementById('topTimer').innerHTML = `باقي لعيد الميلاد: ${days} يوم ${hours}س ${mins}د ${secs}ث ⏳`;
+                document.getElementById('topTimer').innerHTML = `⏳ باقي لعيد الميلاد: ${days} يوم ${hours}س ${mins}د ${secs}ث`;
             }
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
-
-        // كلمة المرور السرية للمطور (تفتح الموقع فوراً للتجربة)
-        const MY_SECRET_PASS = "you're my love";
 
         function checkDevPass() {
             const val = document.getElementById('devPass').value.trim().toLowerCase();
@@ -360,14 +367,11 @@
 
         function unlockSite() {
             isUnlocked = true;
-            // إخفاء شريط العد التنازلي العلوي وخانة الباسورد عند الفتح الحقيقي أو بالباسورد
-            document.getElementById('topTimer').style.display = 'none';
-            document.getElementById('devPassSection').style.display = 'none';
-            renderPage();
+            renderSite();
         }
 
-        // الحالة الابتدائية قبل إدخال الباسورد (تعرض أول بيت شعر كمثال أو شاشة قفل، وهنا جعلناها تعرض الصفحات مع وجود خانة الباسورد تحت للتجربة السريعة)
-        renderPage();
+        // التشغيل الأولي
+        renderSite();
     </script>
 </body>
 </html>
