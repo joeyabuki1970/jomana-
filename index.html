@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Jomana 💖✨</title>
+    <title>JOMANA | SPECIAL GIFT</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -79,7 +79,7 @@
             backdrop-filter: blur(8px);
         }
 
-        /* شريط العد التنازلي العلوي */
+        /* شريط العد التنازلي بشكلم غامض وتقني من غير سيرة عيد ميلاد */
         .top-timer-badge {
             background: rgba(255, 0, 127, 0.12);
             border: 1px solid rgba(255, 0, 127, 0.5);
@@ -92,6 +92,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            letter-spacing: 1px;
         }
 
         /* القلب الضخم المنور وجواه الاسم */
@@ -143,7 +144,7 @@
             font-weight: 700;
         }
 
-        /* خانة الباسورد السرية المدمجة في التصميم للتجربة */
+        /* خانة الباسورد السرية المدمجة في التصميم */
         .dev-pass-input {
             background: rgba(0, 0, 0, 0.75);
             border: 1px solid #ff007f;
@@ -218,9 +219,9 @@
     <div class="container">
         <div class="book-card" id="mainCard">
             
-            <!-- شريط العد التنازلي العلوي المطابق للصورة -->
+            <!-- شريط العد التنازلي الغامض بدون سيرة عيد ميلاد -->
             <div class="top-timer-badge" id="topTimer">
-                ⏳ باقي لعيد الميلاد: جاري الحساب...
+                ⏳ Loading...
             </div>
 
             <!-- القلب والاسم -->
@@ -289,19 +290,17 @@
             const topTimer = document.getElementById('topTimer');
 
             if (!isUnlocked) {
-                // وضع قفل العد التنازلي مع خانة الباسورد في نفس تصميم الكارت من غير ما يبوظ الشكل
                 topTimer.style.display = 'inline-flex';
                 navButtons.style.display = 'none';
                 pageIndicator.style.display = 'none';
                 
                 displayArea.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                        <div style="font-size: 0.95rem; margin-bottom: 10px; color: #ff3399;">🔒 الموقع مغلق حتى الميعاد</div>
+                        <div style="font-size: 0.9rem; margin-bottom: 12px; color: #ff3399; letter-spacing: 1px;">System Locked</div>
                         <input type="text" id="devPass" class="dev-pass-input" placeholder="Password..." oninput="checkDevPass()">
                     </div>
                 `;
             } else {
-                // وضع عرض صفحات الشعر بعد الفتح
                 topTimer.style.display = 'none';
                 navButtons.style.display = 'flex';
                 pageIndicator.style.display = 'block';
@@ -333,7 +332,7 @@
             }
         }
 
-        // حساب العد التنازلي الحقيقي لـ 29 نوفمبر 2026
+        // عداد الوقت الخفي بدون ذكر أي مناسبة
         const targetDate = new Date('November 29, 2026 00:00:00').getTime();
 
         function updateCountdown() {
@@ -351,7 +350,7 @@
             const secs = Math.floor((difference % (1000 * 60)) / 1000);
 
             if (!isUnlocked) {
-                document.getElementById('topTimer').innerHTML = `⏳ باقي لعيد الميلاد: ${days} يوم ${hours}س ${mins}د ${secs}ث`;
+                document.getElementById('topTimer').innerHTML = `⏳ ${days}d ${hours}h ${mins}m ${secs}s`;
             }
         }
 
@@ -370,7 +369,6 @@
             renderSite();
         }
 
-        // التشغيل الأولي
         renderSite();
     </script>
 </body>
