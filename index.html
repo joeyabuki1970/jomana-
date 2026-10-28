@@ -79,20 +79,21 @@
             backdrop-filter: blur(8px);
         }
 
-        /* شريط العد التنازلي بشكلم غامض وتقني من غير سيرة عيد ميلاد */
+        /* شريط العد التنازلي (أرقام فقط بدون أي كلمات توحي بالمناسبة) */
         .top-timer-badge {
             background: rgba(255, 0, 127, 0.12);
             border: 1px solid rgba(255, 0, 127, 0.5);
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #ff3399;
             margin-bottom: 10px;
             box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             letter-spacing: 1px;
+            direction: ltr;
         }
 
         /* القلب الضخم المنور وجواه الاسم */
@@ -144,7 +145,7 @@
             font-weight: 700;
         }
 
-        /* خانة الباسورد السرية المدمجة في التصميم */
+        /* خانة الباسورد السرية المدمجة */
         .dev-pass-input {
             background: rgba(0, 0, 0, 0.75);
             border: 1px solid #ff007f;
@@ -216,12 +217,17 @@
     <!-- خلفية الماتريكس -->
     <div class="matrix-bg" id="matrixBg"></div>
 
+    <!-- عنصر الصوت للأغنية -->
+    <audio id="bgAudio" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=slowed-guitar-113532.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="container">
         <div class="book-card" id="mainCard">
             
-            <!-- شريط العد التنازلي الغامض بدون سيرة عيد ميلاد -->
+            <!-- شريط العد التنازلي بالأرقام فقط -->
             <div class="top-timer-badge" id="topTimer">
-                ⏳ Loading...
+                ⏳ 00d 00h 00m 00s
             </div>
 
             <!-- القلب والاسم -->
@@ -283,6 +289,15 @@
         // كلمة المرور السرية
         const MY_SECRET_PASS = "you're my love";
 
+        function startMusic() {
+            const audio = document.getElementById('bgAudio');
+            if (audio) {
+                audio.play().catch(e => {
+                    console.log("Audio play waiting for interaction");
+                });
+            }
+        }
+
         function renderSite() {
             const displayArea = document.getElementById('displayArea');
             const navButtons = document.getElementById('navButtons');
@@ -296,8 +311,8 @@
                 
                 displayArea.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                        <div style="font-size: 0.9rem; margin-bottom: 12px; color: #ff3399; letter-spacing: 1px;">System Locked</div>
-                        <input type="text" id="devPass" class="dev-pass-input" placeholder="Password..." oninput="checkDevPass()">
+                        <div style="font-size: 0.9rem; margin-bottom: 12px; color: #ff3399; letter-spacing: 1px;">الموقع مغلق حتى الميعاد 🔒</div>
+                        <input type="text" id="devPass" class="dev-pass-input" placeholder="...Password" oninput="checkDevPass()">
                     </div>
                 `;
             } else {
@@ -326,13 +341,14 @@
         }
 
         function changePage(direction) {
+            startMusic();
             currentPage += direction;
             if (currentPage >= 0 && currentPage < pages.length) {
                 renderSite();
             }
         }
 
-        // عداد الوقت الخفي بدون ذكر أي مناسبة
+        // حساب العد التنازلي الحقيقي لـ 29 نوفمبر 2026 (أرقام فقط بدون كلمات)
         const targetDate = new Date('November 29, 2026 00:00:00').getTime();
 
         function updateCountdown() {
@@ -367,7 +383,14 @@
         function unlockSite() {
             isUnlocked = true;
             renderSite();
+            startMusic(); // تشغيل الأغنية فور إدخال الباسورد بنجاح
         }
+
+        document.addEventListener('click', () => {
+            if (isUnlocked) {
+                startMusic();
+            }
+        });
 
         renderSite();
     </script>
