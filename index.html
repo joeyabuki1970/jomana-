@@ -1,4 +1,4 @@
-here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -64,7 +64,7 @@ here<!DOCTYPE html>
             margin-bottom: 10px;
         }
 
-        /* حاوية الجواب مع أنيميشن الطيران والطفو المستمر */
+        /* حاوية الجواب مع أنيميشن الطيران */
         .envelope-container {
             position: relative;
             margin: 15px auto;
@@ -192,7 +192,7 @@ here<!DOCTYPE html>
             color: #333;
         }
 
-        /* مشهد الكيكة الـ 3D مع Happy Birthday فوق والتزيين غير المتناسق */
+        /* مشهد الكيكة 3D مظبوط والجاذبية في الصوص */
         .cake-scene {
             position: relative;
             width: 200px;
@@ -237,37 +237,47 @@ here<!DOCTYPE html>
             animation: fallCake 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* تزيين الكريمة بشكل غير متناسق (قطرات نازلة بطول مختلف) */
-        .drip-1 { position: absolute; top: 0; left: 10px; width: 14px; height: 18px; background: #ff4081; border-radius: 0 0 8px 8px; }
-        .drip-2 { position: absolute; top: 0; left: 35px; width: 18px; height: 26px; background: #ff4081; border-radius: 0 0 10px 10px; }
-        .drip-3 { position: absolute; top: 0; left: 65px; width: 12px; height: 15px; background: #ff4081; border-radius: 0 0 6px 6px; }
-        .drip-4 { position: absolute; top: 0; left: 85px; width: 16px; height: 22px; background: #ff4081; border-radius: 0 0 8px 8px; }
-        .drip-5 { position: absolute; top: 0; left: 110px; width: 12px; height: 14px; background: #ff4081; border-radius: 0 0 6px 6px; }
+        /* طبقة الصوص المتصلة من فوق ونازلة بقطرات بفعل الجاذبية */
+        .topping-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            background: #ff4081;
+            border-radius: 10px 10px 0 0;
+        }
 
-        /* شمعة على شكل حرف J ومنورة بنار بتولع */
+        .drip-1 { position: absolute; top: 12px; left: 12px; width: 12px; height: 16px; background: #ff4081; border-radius: 0 0 6px 6px; }
+        .drip-2 { position: absolute; top: 12px; left: 36px; width: 16px; height: 24px; background: #ff4081; border-radius: 0 0 8px 8px; }
+        .drip-3 { position: absolute; top: 12px; left: 68px; width: 10px; height: 13px; background: #ff4081; border-radius: 0 0 5px 5px; }
+        .drip-4 { position: absolute; top: 12px; left: 88px; width: 15px; height: 20px; background: #ff4081; border-radius: 0 0 7px 7px; }
+        .drip-5 { position: absolute; top: 12px; left: 110px; width: 11px; height: 15px; background: #ff4081; border-radius: 0 0 5px 5px; }
+
+        /* شمعة حرف J مغروزة في الكيكة مش طايرة ومعاها النار */
         .candle-j {
             position: absolute;
-            bottom: 73px;
-            font-size: 1.8rem;
+            bottom: 55px; /* مغروزة فوق سطح الكيكة مباشرة */
+            font-size: 1.6rem;
             font-weight: 900;
             color: #ffeb3b;
-            text-shadow: 0 0 8px #ff9800, 0 0 15px #ff5722;
+            text-shadow: 0 0 6px #ff9800, 0 0 12px #ff5722;
             animation: fallCandle 0.6s ease 0.4s forwards;
             opacity: 0;
             z-index: 4;
         }
 
-        /* شعلة النار اللي بتولع فوق الشمعة */
+        /* شعلة النار */
         .flame {
             position: absolute;
-            top: -12px;
+            top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 10px;
-            height: 16px;
+            width: 8px;
+            height: 14px;
             background: radial-gradient(circle, #fff59d 0%, #ff9800 60%, #ff5722 100%);
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 10px #ff9800, 0 0 20px #ff5722;
+            box-shadow: 0 0 8px #ff9800, 0 0 15px #ff5722;
             animation: flicker 0.4s infinite alternate ease-in-out;
         }
 
@@ -282,7 +292,7 @@ here<!DOCTYPE html>
         }
 
         @keyframes fallCandle {
-            0% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+            0% { transform: translateY(-60px) scale(0.5); opacity: 0; }
             100% { transform: translateY(0) scale(1); opacity: 1; }
         }
 
@@ -312,7 +322,7 @@ here<!DOCTYPE html>
 <body>
 
     <div class="container">
-        <!-- الصفحة الأولى: العد التنازلي والجواب -->
+        <!-- الصفحة الأولى -->
         <div class="card" id="page1">
             <div>
                 <div class="header-title">انتظري العد التنازلي</div>
@@ -357,13 +367,12 @@ here<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- الصفحة التانية: الكيكة 3D مع شمعة J منورة وكريمة غير متناسقة -->
+        <!-- الصفحة التانية: الكيكة بالصوص المتصل والجاذبية وشمعة J المغروزة -->
         <div class="card" id="page2" style="display: none;">
             <div>
                 <div class="header-title" style="font-size: 1.2rem;">رسالة خاصة 🎂</div>
             </div>
 
-            <!-- مشهد الكيكة 3D -->
             <div class="cake-scene">
                 <div class="cake-scene-title">Happy Birthday</div>
                 
@@ -373,6 +382,7 @@ here<!DOCTYPE html>
                 </div>
 
                 <div class="cake-body-3d">
+                    <div class="topping-layer"></div>
                     <div class="drip-1"></div>
                     <div class="drip-2"></div>
                     <div class="drip-3"></div>
@@ -390,7 +400,7 @@ here<!DOCTYPE html>
             <button class="btn-action" onclick="goToPage3()">التالي ⬅</button>
         </div>
 
-        <!-- الصفحة التالتة: الجملة التانية والختام -->
+        <!-- الصفحة التالتة -->
         <div class="card" id="page3" style="display: none;">
             <div>
                 <div class="header-title" style="font-size: 1.2rem;">هدية مميزة ✨</div>
