@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JOMANA | SPECIAL GIFT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: 'Cairo', sans-serif;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
 
         body {
-            background-color: #050505;
-            color: #FFF;
+            background-color: #fce4ec;
+            color: #4a4a4a;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -25,411 +28,305 @@
             position: relative;
         }
 
-        /* خلفية الماتريكس الخفيفة */
-        .matrix-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 1;
-            opacity: 0.12;
-            pointer-events: none;
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .matrix-column {
-            color: #FF3399;
-            font-family: monospace;
-            font-size: 1.1rem;
-            writing-mode: vertical-rl;
-            text-orientation: upright;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
-
         .container {
             text-align: center;
-            padding: 15px;
             z-index: 2;
             position: relative;
-            max-width: 480px;
-            width: 92%;
+            max-width: 450px;
+            width: 90%;
+            padding: 20px;
         }
 
-        /* كارت التصميم */
-        .book-card {
-            background: rgba(12, 12, 20, 0.92);
-            border: 2px solid #ff007f;
-            box-shadow: 0 0 30px rgba(255, 0, 127, 0.45);
-            border-radius: 24px;
-            padding: 25px 20px;
-            min-height: 420px;
+        .card {
+            background: #ffffff;
+            border: 2px solid #f8bbd0;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
+            border-radius: 30px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
             position: relative;
-            backdrop-filter: blur(8px);
         }
 
-        /* شريط العد التنازلي أرقام فقط */
-        .top-timer-badge {
-            background: rgba(255, 0, 127, 0.12);
-            border: 1px solid rgba(255, 0, 127, 0.5);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #ff3399;
-            margin-bottom: 10px;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            letter-spacing: 1px;
-            direction: ltr;
-        }
-
-        /* القلب الضخم المنور وجواه الاسم */
-        .heart-box {
-            position: relative;
-            width: 150px;
-            height: 135px;
-            margin: 5px auto 10px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: pulseHeart 1.2s infinite ease-in-out;
-        }
-
-        .heart-box svg {
-            width: 100%;
-            height: 100%;
-            fill: #ff007f;
-            filter: drop-shadow(0 0 22px #ff007f);
-        }
-
-        .heart-name {
-            position: absolute;
-            color: #fff;
-            font-size: 1.25rem;
-            font-weight: 700;
-            font-style: italic;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
-            letter-spacing: 1px;
-        }
-
-        @keyframes pulseHeart {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-
-        /* نص بيت الشعر أو خانة الباسورد */
-        .poem-text {
-            font-size: 1.1rem;
-            line-height: 2.1;
-            color: #FFF;
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7);
-            margin: 5px 0 15px 0;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        /* خانة الباسورد السرية */
-        .dev-pass-input {
-            background: rgba(0, 0, 0, 0.75);
-            border: 1px solid #ff007f;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 12px;
-            text-align: center;
-            outline: none;
-            font-size: 0.9rem;
-            width: 80%;
-            max-width: 200px;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.4);
-            margin-bottom: 10px;
-        }
-
-        .dev-pass-input::placeholder {
-            color: rgba(255, 0, 127, 0.6);
-        }
-
-        /* أزرار التنقل */
-        .nav-buttons {
-            display: flex;
-            gap: 12px;
-            width: 100%;
-            justify-content: center;
+        .header-title {
+            font-size: 1.5rem;
+            color: #ad1457;
+            font-weight: 900;
             margin-bottom: 5px;
         }
 
-        .btn {
-            background: #ff007f;
-            color: #FFF;
-            border: none;
-            padding: 10px 28px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            transform: scale(1.05);
-            background: #ff3399;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid #ff007f;
-            color: #ff007f;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 0, 127, 0.15);
-            color: #fff;
-        }
-
-        /* زر تشغيل الموسيقى بعد فتح الموقع */
-        .music-btn {
-            background: linear-gradient(45deg, #ff007f, #ff3399);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
+        .header-subtitle {
             font-size: 0.85rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-bottom: 10px;
-            box-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
-            display: inline-flex;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        /* شكل الجواب والجناحات */
+        .envelope-wrapper {
+            position: relative;
+            width: 160px;
+            height: 110px;
+            background: #fff;
+            border: 2px solid #f48fb1;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 6px;
+            margin: 20px auto 35px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
 
-        /* عداد الصفحات السفلي */
-        .page-indicator {
-            font-size: 0.85rem;
-            color: #ff007f;
-            letter-spacing: 1px;
+        .wing {
+            position: absolute;
+            top: -15px;
+            width: 50px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 -2px 10px rgba(255,255,255,0.8);
+            z-index: -1;
+        }
+        .wing.left { left: -35px; transform: rotate(-20deg); animation: flutterLeft 1.5s infinite alternate; }
+        .wing.right { right: -35px; transform: scaleX(-1) rotate(-20deg); animation: flutterRight 1.5s infinite alternate; }
+
+        @keyframes flutterLeft { 0% { transform: rotate(-15deg); } 100% { transform: rotate(-30deg); } }
+        @keyframes flutterRight { 0% { transform: scaleX(-1) rotate(-15deg); } 100% { transform: scaleX(-1) rotate(-30deg); } }
+
+        .wax-seal {
+            width: 36px;
+            height: 36px;
+            background: #c2185b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            border: 2px dashed #f8bbd0;
+        }
+
+        /* العداد التنازلي */
+        .countdown-box {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .time-block {
+            background: #fdf2f8;
+            border: 1px solid #fce7f3;
+            padding: 10px 8px;
+            border-radius: 12px;
+            min-width: 65px;
+            text-align: center;
+        }
+
+        .time-number {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #ad1457;
+        }
+
+        .time-label {
+            font-size: 0.7rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        .status-badge {
+            background: #fdf2f8;
+            border: 1px solid #f48fb1;
+            color: #ad1457;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .pass-input {
+            background: #fafafa;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            width: 80%;
+            outline: none;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* نافذة الرسالة السريّة (صفحة بيضاء بخط ذهبي كالجواب الفاخر) */
+        .secret-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .secret-content {
+            background: #ffffff;
+            padding: 40px 25px;
+            border-radius: 20px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px; left: 15px;
+            background: none; border: none;
+            font-size: 1.2rem; cursor: pointer; color: #aaa;
+        }
+
+        /* الحروف بخط ذهبي جميل كأنه جواب حقيقي */
+        .gold-letter-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            color: #b8860b; /* لون ذهبي دافئ وواضح */
             font-weight: 700;
+            margin-bottom: 25px;
+            text-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
+        }
+
+        .btn-open {
+            background: #ad1457;
+            color: #fff;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(173, 20, 87, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <!-- خلفية الماتريكس -->
-    <div class="matrix-bg" id="matrixBg"></div>
-
-    <!-- عنصر الصوت للأغنية -->
-    <audio id="bgAudio" loop preload="auto">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=slowed-guitar-113532.mp3" type="audio/mpeg">
-    </audio>
-
     <div class="container">
-        <div class="book-card" id="mainCard">
+        <div class="card">
             
-            <!-- شريط العد التنازلي -->
-            <div class="top-timer-badge" id="topTimer">
-                ⏳ 00d 00h 00m 00s
+            <div class="header-title">انتظري العد التنازلي</div>
+            <div class="header-subtitle">كل ثانية تقربنا من يومك...</div>
+
+            <!-- الجواب والختم والجناحات -->
+            <div class="envelope-wrapper" id="envelopeBtn" onclick="tryOpenLetter()">
+                <div class="wing left"></div>
+                <div class="wing right"></div>
+                <div class="wax-seal">💌</div>
             </div>
 
-            <!-- زر تشغيل الموسيقى (يظهر فقط بعد فتح الموقع) -->
-            <button class="music-btn" id="musicBtn" style="display: none;" onclick="toggleMusic()">🎵 تشغيل الموسيقى</button>
-
-            <!-- القلب والاسم -->
-            <div class="heart-box">
-                <svg viewBox="0 0 32 29.6">
-                    <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
-                    c6.5-9.3,16-11.8,16-21.2C32,3.8,28.2,0,23.6,0z"/>
-                </svg>
-                <span class="heart-name">jomana</span>
+            <!-- العد التنازلي -->
+            <div class="countdown-box" id="countdownContainer">
+                <div class="time-block">
+                    <div class="time-number" id="days">00</div>
+                    <div class="time-label">يوم</div>
+                </div>
+                <div class="time-block">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-label">ساعة</div>
+                </div>
+                <div class="time-block">
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-label">دقيقة</div>
+                </div>
+                <div class="time-block">
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-label">ثانية</div>
+                </div>
             </div>
 
-            <!-- مكان عرض الشعر أو خانة الباسورد -->
-            <div class="poem-text" id="displayArea">
-                <!-- يتم التبديل هنا -->
+            <div class="status-badge" id="statusText">
+                ⏳ سيتم فتح الرسالة تلقائياً يوم 29 نوفمبر الساعة 1:00 فجراً
             </div>
 
-            <!-- أزرار التنقل -->
-            <div class="nav-buttons" id="navButtons">
-                <button class="btn btn-secondary" id="prevBtn" onclick="changePage(-1)">السابق</button>
-                <button class="btn" id="nextBtn" onclick="changePage(1)">التالي ⬅</button>
+            <!-- خانة إدخال الباسورد للاختبار (1129) -->
+            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+                <input type="password" id="passInput" class="pass-input" placeholder="أدخل شفرة الدخول (1129)..." oninput="checkPass()">
             </div>
-
-            <!-- العداد السفلي -->
-            <div class="page-indicator" id="pageIndicator">صفحة 1 من 6</div>
 
         </div>
     </div>
 
+    <!-- نافذة الرسالة المخفية (الصفحة البيضاء والخط الذهبي) -->
+    <div class="secret-modal" id="secretModal">
+        <div class="secret-content">
+            <button class="close-btn" onclick="closeModal()">✕</button>
+            <div class="gold-letter-text">
+                كل سنة و انتي طيبه يا جومانا<br>
+                قولت اعملك حاجه مميزه لعيد ميلادك 😔🖐🏿<br><br>
+                كل سنه و انتي طيبه 🥳🥳
+            </div>
+            <button class="btn-open" onclick="closeModal()">إغلاق</button>
+        </div>
+    </div>
+
     <script>
-        // تأثير الماتريكس في الخلفية
-        const matrixBg = document.getElementById('matrixBg');
-        const chars = "JOMANA 2026 ♥ 1129";
-        for (let i = 0; i < 14; i++) {
-            const col = document.createElement('div');
-            col.className = 'matrix-column';
-            col.style.animationDuration = (3 + Math.random() * 4) + 's';
-            col.style.animationDelay = (Math.random() * 2) + 's';
-            let text = "";
-            for (let j = 0; j < 18; j++) {
-                text += chars.charAt(Math.floor(Math.random() * chars.length)) + "<br>";
-            }
-            col.innerHTML = text;
-            matrixBg.appendChild(col);
-        }
-
-        // أبيات الشعر والصفحة الأخيرة المعايدة
-        const pages = [
-            "ما زلتُ أخشى في هواكِ مشاعري.. وأخاف من قلبي وفرط حناني",
-            "أخشى عليكِ من المحبة إن طغت.. وأخاف أن يؤذيك فيض اهتمامي",
-            "يا من سكنتِ قلبي رِفقاً بالحشى.. فالخوف يقتلني وأنتِ أمامي",
-            "لو باتَ سهمٌ من الأعداء في كبدي.. ما نال مني ما نالتْهُ عيناكِ",
-            "أغزلها وأسرف في هواها.. كأن الله لم يخلق سواها",
-            "كل سنة وأنتي طيبة يا جومانا 🎉✨"
-        ];
-
-        let currentPage = 0;
-        let isUnlocked = false;
-        let isPlaying = false;
-
-        // كلمة المرور السرية
-        const MY_SECRET_PASS = "you're my love";
-
-        function toggleMusic() {
-            const audio = document.getElementById('bgAudio');
-            const musicBtn = document.getElementById('musicBtn');
-            if (audio) {
-                if (isPlaying) {
-                    audio.pause();
-                    isPlaying = false;
-                    musicBtn.innerHTML = "🎵 تشغيل الموسيقى";
-                } else {
-                    audio.play().then(() => {
-                        isPlaying = true;
-                        musicBtn.innerHTML = "⏸ إيقاف الموسيقى";
-                    }).catch(e => {
-                        console.log("Play blocked");
-                    });
-                }
-            }
-        }
-
-        function renderSite() {
-            const displayArea = document.getElementById('displayArea');
-            const navButtons = document.getElementById('navButtons');
-            const pageIndicator = document.getElementById('pageIndicator');
-            const topTimer = document.getElementById('topTimer');
-            const musicBtn = document.getElementById('musicBtn');
-
-            if (!isUnlocked) {
-                topTimer.style.display = 'inline-flex';
-                musicBtn.style.display = 'none';
-                navButtons.style.display = 'none';
-                pageIndicator.style.display = 'none';
-                
-                displayArea.innerHTML = `
-                    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
-                        <div style="font-size: 0.9rem; margin-bottom: 12px; color: #ff3399; letter-spacing: 1px;">الموقع مغلق حتى الميعاد 🔒</div>
-                        <input type="text" id="devPass" class="dev-pass-input" placeholder="...Password" oninput="checkDevPass()">
-                    </div>
-                `;
-            } else {
-                topTimer.style.display = 'none';
-                musicBtn.style.display = 'inline-flex';
-                navButtons.style.display = 'flex';
-                pageIndicator.style.display = 'block';
-
-                displayArea.innerText = pages[currentPage];
-                pageIndicator.innerText = `صفحة ${currentPage + 1} من ${pages.length}`;
-
-                const prevBtn = document.getElementById('prevBtn');
-                const nextBtn = document.getElementById('nextBtn');
-
-                if (currentPage === 0) {
-                    prevBtn.style.display = 'none';
-                } else {
-                    prevBtn.style.display = 'block';
-                }
-
-                if (currentPage === pages.length - 1) {
-                    nextBtn.style.display = 'none';
-                } else {
-                    nextBtn.style.display = 'block';
-                }
-            }
-        }
-
-        function changePage(direction) {
-            currentPage += direction;
-            if (currentPage >= 0 && currentPage < pages.length) {
-                renderSite();
-            }
-        }
-
-        // عداد الوقت
-        const targetDate = new Date('November 29, 2026 00:00:00').getTime();
+        // موعد الفتح: 29 نوفمبر 2026 الساعة 01:00 صباحاً (1 فجراً)
+        const targetDate = new Date("November 29, 2026 01:00:00").getTime();
+        const MY_PASS = "1129";
+        let isTimeReached = false;
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const difference = targetDate - now;
+            const distance = targetDate - now;
 
-            if (difference <= 0) {
-                unlockSite();
+            if (distance < 0) {
+                isTimeReached = true;
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                document.getElementById("statusText").innerText = "🎉 الوقت جاء! اضغط على الجواب لفتحه";
                 return;
             }
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((difference % (1000 * 60)) / 1000);
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (!isUnlocked) {
-                document.getElementById('topTimer').innerHTML = `⏳ ${days}d ${hours}h ${mins}m ${secs}s`;
-            }
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        function checkDevPass() {
-            const val = document.getElementById('devPass').value.trim().toLowerCase();
-            if (val === MY_SECRET_PASS.toLowerCase()) {
-                unlockSite();
+        function tryOpenLetter() {
+            if (isTimeReached) {
+                document.getElementById("secretModal").style.display = "flex";
+            } else {
+                alert("🔒 لم يحن موعد فتح الرسالة بعد! (أو استخدم شفرة الدخول السرية 1129 بالأسفل)");
             }
         }
 
-        function unlockSite() {
-            isUnlocked = true;
-            renderSite();
-            // محاولة التشغيل التلقائي فور إدخال الباسورد
-            const audio = document.getElementById('bgAudio');
-            const musicBtn = document.getElementById('musicBtn');
-            if (audio) {
-                audio.play().then(() => {
-                    isPlaying = true;
-                    musicBtn.innerHTML = "⏸ إيقاف الموسيقى";
-                }).catch(e => {
-                    console.log("Auto-play restricted by browser, user can click the music button");
-                });
+        function checkPass() {
+            const val = document.getElementById("passInput").value.trim();
+            if (val === MY_PASS) {
+                document.getElementById("secretModal").style.display = "flex";
             }
         }
 
-        renderSite();
+        function closeModal() {
+            document.getElementById("secretModal").style.display = "none";
+        }
     </script>
 </body>
 </html>
