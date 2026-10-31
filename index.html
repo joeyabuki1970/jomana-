@@ -47,7 +47,7 @@ here<!DOCTYPE html>
             flex-direction: column;
             align-items: center;
             position: relative;
-            min-height: 420px;
+            min-height: 440px;
             justify-content: space-between;
         }
 
@@ -192,85 +192,88 @@ here<!DOCTYPE html>
             color: #333;
         }
 
-        /* أنيميشن بناء الكيكة وتقع في الطبق زي الفيديو بالضبط */
+        /* مشهد الكيكة الـ 3D مع Happy Birthday فوق والتزيين غير المتناسق */
         .cake-scene {
             position: relative;
-            width: 180px;
-            height: 130px;
-            margin: 10px auto;
-            background: #4a2e35;
+            width: 200px;
+            height: 145px;
+            margin: 5px auto;
+            background: #2b1820;
             border-radius: 16px;
             overflow: hidden;
             display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 8px 20px rgba(0,0,0,0.15);
+            padding-bottom: 10px;
         }
 
-        /* الطبق السفلي */
-        .cake-plate {
+        .cake-scene-title {
             position: absolute;
-            bottom: 10px;
-            width: 150px;
-            height: 8px;
-            background: #ddd;
-            border-radius: 4px;
+            top: 10px;
+            color: #ff80ab;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
-        /* الكيكة وهي نازلة من فوق */
-        .cake-body {
+        .cake-plate-3d {
+            width: 170px;
+            height: 10px;
+            background: linear-gradient(to bottom, #eee, #ccc);
+            border-radius: 50%;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+        }
+
+        .cake-body-3d {
             position: absolute;
             bottom: 18px;
-            width: 120px;
-            height: 45px;
-            background: #fdf2f8;
-            border: 2px solid #f48fb1;
-            border-radius: 6px;
+            width: 130px;
+            height: 55px;
+            background: linear-gradient(135deg, #fff0f3, #ffd1dc);
+            border-radius: 10px 10px 6px 6px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.25), inset 0 -5px 10px rgba(0,0,0,0.05);
             animation: fallCake 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* الكريمة فوق الكيكة */
-        .cake-topping-cream {
-            position: absolute;
-            bottom: 61px;
-            width: 120px;
-            height: 10px;
-            background: #ff4081;
-            border-radius: 4px;
-            animation: fallCream 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
-            opacity: 0;
-        }
+        /* تزيين الكريمة بشكل غير متناسق (قطرات نازلة بطول مختلف) */
+        .drip-1 { position: absolute; top: 0; left: 10px; width: 14px; height: 18px; background: #ff4081; border-radius: 0 0 8px 8px; }
+        .drip-2 { position: absolute; top: 0; left: 35px; width: 18px; height: 26px; background: #ff4081; border-radius: 0 0 10px 10px; }
+        .drip-3 { position: absolute; top: 0; left: 65px; width: 12px; height: 15px; background: #ff4081; border-radius: 0 0 6px 6px; }
+        .drip-4 { position: absolute; top: 0; left: 85px; width: 16px; height: 22px; background: #ff4081; border-radius: 0 0 8px 8px; }
+        .drip-5 { position: absolute; top: 0; left: 110px; width: 12px; height: 14px; background: #ff4081; border-radius: 0 0 6px 6px; }
 
-        /* الشمعة والشمراخ */
-        .cake-candle {
+        /* شمعة على شكل حرف J ومنورة بنار بتولع */
+        .candle-j {
             position: absolute;
-            bottom: 71px;
-            width: 8px;
-            height: 25px;
-            background: #ffeb3b;
-            border-radius: 2px;
-            animation: fallCandle 0.5s ease 0.6s forwards;
-            opacity: 0;
-        }
-
-        /* حرف J على الكيكة من الجنب */
-        .cake-letter-j {
-            position: absolute;
-            bottom: 28px;
-            right: 30px;
-            font-size: 1.1rem;
+            bottom: 73px;
+            font-size: 1.8rem;
             font-weight: 900;
-            color: #ad1457;
-            background: #fff;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            animation: fadeInLetter 0.4s ease 0.9s forwards;
+            color: #ffeb3b;
+            text-shadow: 0 0 8px #ff9800, 0 0 15px #ff5722;
+            animation: fallCandle 0.6s ease 0.4s forwards;
             opacity: 0;
+            z-index: 4;
+        }
+
+        /* شعلة النار اللي بتولع فوق الشمعة */
+        .flame {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 16px;
+            background: radial-gradient(circle, #fff59d 0%, #ff9800 60%, #ff5722 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 10px #ff9800, 0 0 20px #ff5722;
+            animation: flicker 0.4s infinite alternate ease-in-out;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-3deg); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.15) rotate(3deg); opacity: 1; }
         }
 
         @keyframes fallCake {
@@ -278,19 +281,9 @@ here<!DOCTYPE html>
             100% { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes fallCream {
-            0% { transform: translateY(-100px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
         @keyframes fallCandle {
-            0% { transform: translateY(-80px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeInLetter {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            0% { transform: translateY(-80px) scale(0.5); opacity: 0; }
+            100% { transform: translateY(0) scale(1); opacity: 1; }
         }
 
         .gold-text {
@@ -298,9 +291,9 @@ here<!DOCTYPE html>
             line-height: 2.2;
             color: #b8860b;
             font-weight: 700;
-            margin: 15px 0;
+            margin: 10px 0;
             text-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
-            min-height: 70px;
+            min-height: 65px;
         }
 
         .btn-action {
@@ -312,7 +305,7 @@ here<!DOCTYPE html>
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(173, 20, 87, 0.3);
-            margin-top: 10px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -364,19 +357,30 @@ here<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- الصفحة التانية: الكيكة وهي بتنزل والجملة الأولى -->
+        <!-- الصفحة التانية: الكيكة 3D مع شمعة J منورة وكريمة غير متناسقة -->
         <div class="card" id="page2" style="display: none;">
             <div>
                 <div class="header-title" style="font-size: 1.2rem;">رسالة خاصة 🎂</div>
             </div>
 
-            <!-- أنيميشن بناء الكيكة المظبوط زي الفيديو -->
+            <!-- مشهد الكيكة 3D -->
             <div class="cake-scene">
-                <div class="cake-plate"></div>
-                <div class="cake-body"></div>
-                <div class="cake-topping-cream"></div>
-                <div class="cake-candle"></div>
-                <div class="cake-letter-j">J</div>
+                <div class="cake-scene-title">Happy Birthday</div>
+                
+                <div class="candle-j">
+                    J
+                    <div class="flame"></div>
+                </div>
+
+                <div class="cake-body-3d">
+                    <div class="drip-1"></div>
+                    <div class="drip-2"></div>
+                    <div class="drip-3"></div>
+                    <div class="drip-4"></div>
+                    <div class="drip-5"></div>
+                </div>
+
+                <div class="cake-plate-3d"></div>
             </div>
 
             <div class="gold-text">
@@ -392,7 +396,7 @@ here<!DOCTYPE html>
                 <div class="header-title" style="font-size: 1.2rem;">هدية مميزة ✨</div>
             </div>
 
-            <div style="font-size: 3.5rem; margin: 20px 0;">🎁</div>
+            <div style="font-size: 3.5rem; margin: 15px 0;">🎁</div>
 
             <div class="gold-text">
                 قولت اعملك حاجه مميزه تخص عيد ميلادك 🥳
