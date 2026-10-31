@@ -42,45 +42,11 @@
             border: 2px solid #f8bbd0;
             box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
             border-radius: 30px;
-            padding: 25px 20px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
-        }
-
-        /* كيكة عيد الميلاد مع حرف J على الجنب في الواجهة بالضبط */
-        .cake-container {
-            position: relative;
-            font-size: 3rem;
-            margin-bottom: 5px;
-            display: inline-block;
-            animation: bounceCake 2s infinite alternate ease-in-out;
-        }
-
-        .j-topping {
-            position: absolute;
-            bottom: 8px;
-            right: 2px; /* ظبطناه على الجنب من جهة المشاهد تماماً */
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: #d81b60;
-            background: #fff;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid #f48fb1;
-            box-shadow: 0 2px 6px rgba(216, 27, 96, 0.3);
-            font-family: Arial, sans-serif;
-            z-index: 3;
-        }
-
-        @keyframes bounceCake {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-5px); }
         }
 
         .header-title {
@@ -93,13 +59,13 @@
         .header-subtitle {
             font-size: 0.85rem;
             color: #888;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         /* حاوية الجواب مع أنيميشن الطيران والطفو المستمر */
         .envelope-container {
             position: relative;
-            margin: 25px auto 35px auto;
+            margin: 15px auto 30px auto;
             animation: floatEnvelope 3s ease-in-out infinite;
             cursor: pointer;
         }
@@ -226,39 +192,36 @@
             color: #333;
         }
 
-        /* نافذة الرسالة السريّة */
+        /* نافذة الرسالة السريّة (الأنيميشن ورسم الكيكة البرمجية وجحيم الحركات) */
         .secret-modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             justify-content: center;
             align-items: center;
             z-index: 10;
             padding: 20px;
-            backdrop-filter: blur(3px);
+            backdrop-filter: blur(4px);
         }
 
         .secret-content {
             background: #ffffff;
-            padding: 35px 25px;
+            padding: 30px 20px;
             border-radius: 22px;
             max-width: 380px;
             width: 100%;
             text-align: center;
             border: 1px solid #e0e0e0;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
             transform: scale(0.7);
             opacity: 0;
             animation: popupSmooth 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         @keyframes popupSmooth {
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .close-btn {
@@ -268,16 +231,90 @@
             font-size: 1.2rem; cursor: pointer; color: #aaa;
         }
 
-        .gold-letter-text {
-            font-size: 1.1rem;
-            line-height: 2.2;
-            color: #b8860b;
-            font-weight: 700;
-            margin-bottom: 25px;
-            text-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
+        /* حاوية بناء الكيكة البرمجية جوه الرسالة زي الفيديو بالضبط */
+        .cake-build-scene {
+            position: relative;
+            width: 160px;
+            height: 120px;
+            margin: 0 auto 15px auto;
+            background: #4a2e35;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
-        .btn-open {
+        /* طبقات الكيكة وهي بتنزل وتتحرك */
+        .cake-base {
+            position: absolute;
+            bottom: 15px;
+            width: 120px;
+            height: 45px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            animation: dropIn 0.8s ease forwards;
+        }
+
+        .cake-cream {
+            position: absolute;
+            bottom: 45px;
+            width: 120px;
+            height: 12px;
+            background: #ff4081;
+            border-radius: 4px;
+            animation: dropCream 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* حرف J على الكيكة من الجنب بوضوح */
+        .cake-j-letter {
+            position: absolute;
+            bottom: 22px;
+            right: 25px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #ad1457;
+            background: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,2);
+            animation: fadeInLetter 0.5s ease 1s forwards;
+            opacity: 0;
+            z-index: 5;
+        }
+
+        @keyframes dropIn {
+            0% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes dropCream {
+            0% { transform: translateY(-80px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInLetter {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .gold-letter-text {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: #b8860b;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
+            min-height: 75px;
+        }
+
+        .btn-next {
             background: #ad1457;
             color: #fff;
             border: none;
@@ -294,12 +331,6 @@
     <div class="container">
         <div class="card">
             
-            <!-- الكيكة مع حرف J على الجنب من جهة الواجهة -->
-            <div class="cake-container">
-                <div class="j-topping">J</div>
-                🎂
-            </div>
-
             <div class="header-title">انتظري العد التنازلي</div>
             <div class="header-subtitle">كل ثانية تقربنا من يومك...</div>
 
@@ -344,15 +375,23 @@
         </div>
     </div>
 
-    <!-- نافذة الرسالة المخفية -->
+    <!-- نافذة الرسالة المخفية (تحتوي على أنيميشن بناء الكيكة وحرف J وزر التالي) -->
     <div class="secret-modal" id="secretModal">
         <div class="secret-content">
             <button class="close-btn" onclick="closeModal()">✕</button>
-            <div class="gold-letter-text">
-                كل سنة وأنتي طيبة يا جومانا 🎂✨<br>
-                قولت اعملك حاجه مميزه تخص عيد ميلادك
+            
+            <!-- أنيميشن بناء الكيكة زي الفيديو -->
+            <div class="cake-build-scene">
+                <div class="cake-base"></div>
+                <div class="cake-cream"></div>
+                <div class="cake-j-letter">J</div>
             </div>
-            <button class="btn-open" onclick="closeModal()">إغلاق</button>
+
+            <div class="gold-letter-text" id="messageBox">
+                كل سنة وأنتي طيبة يا جومانا 🎂✨
+            </div>
+            
+            <button class="btn-next" id="nextStepBtn" onclick="nextMessageStep()">التالي ⬅</button>
         </div>
     </div>
 
@@ -360,6 +399,12 @@
         const targetDate = new Date("November 29, 2026 01:00:00").getTime();
         const MY_PASS = "1129";
         let isTimeReached = false;
+        let messageStep = 0;
+
+        const messages = [
+            "كل سنة وأنتي طيبة يا جومانا 🎂✨",
+            "قولت اعملك حاجه مميزه تخص عيد ميلادك 🥳"
+        ];
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -377,7 +422,6 @@
 
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const dictMin = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
@@ -392,7 +436,7 @@
 
         function tryOpenLetter() {
             if (isTimeReached) {
-                document.getElementById("secretModal").style.display = "flex";
+                openSecretModal();
             } else {
                 alert("🔒 لم يحن موعد فتح الرسالة بعد! (أو استخدم شفرة الدخول السرية 1129 بالأسفل)");
             }
@@ -401,12 +445,31 @@
         function checkPass() {
             const val = document.getElementById("passInput").value.trim();
             if (val === MY_PASS) {
-                document.getElementById("secretModal").style.display = "flex";
+                openSecretModal();
+            }
+        }
+
+        function openSecretModal() {
+            messageStep = 0;
+            document.getElementById("messageBox").innerText = messages[messageStep];
+            document.getElementById("secretModal").style.display = "flex";
+        }
+
+        function nextMessageStep() {
+            messageStep++;
+            if (messageStep < messages.length) {
+                document.getElementById("messageBox").innerText = messages[messageStep];
+                if (messageStep === messages.length - 1) {
+                    document.getElementById("nextStepBtn").innerText = "إغلاق 🤍";
+                }
+            } else {
+                closeModal();
             }
         }
 
         function closeModal() {
             document.getElementById("secretModal").style.display = "none";
+            document.getElementById("nextStepBtn").innerText = "التالي ⬅";
         }
     </script>
 </body>
