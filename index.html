@@ -42,11 +42,45 @@
             border: 2px solid #f8bbd0;
             box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
             border-radius: 30px;
-            padding: 30px 20px;
+            padding: 25px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
+        }
+
+        /* كيكة عيد الميلاد مع حرف J البارز فوق */
+        .cake-container {
+            position: relative;
+            font-size: 3rem;
+            margin-bottom: 5px;
+            display: inline-block;
+            animation: bounceCake 2s infinite alternate ease-in-out;
+        }
+
+        .j-topping {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #d81b60;
+            background: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #f48fb1;
+            box-shadow: 0 2px 8px rgba(216, 27, 96, 0.3);
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes bounceCake {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
         }
 
         .header-title {
@@ -59,51 +93,79 @@
         .header-subtitle {
             font-size: 0.85rem;
             color: #888;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
-        /* شكل الجواب والجناحات */
+        /* حاوية الجواب مع أنيميشن الطيران والطفو المستمر */
+        .envelope-container {
+            position: relative;
+            margin: 25px auto 35px auto;
+            animation: floatEnvelope 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        @keyframes floatEnvelope {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
         .envelope-wrapper {
             position: relative;
-            width: 160px;
-            height: 110px;
+            width: 140px;
+            height: 95px;
             background: #fff;
             border: 2px solid #f48fb1;
             border-radius: 12px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 20px auto 35px auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.15);
         }
 
+        /* أنيميشن الجناحات المتحركة والطائرة */
         .wing {
             position: absolute;
-            top: -15px;
-            width: 50px;
-            height: 40px;
-            background: #fff;
+            top: -18px;
+            width: 55px;
+            height: 45px;
+            background: #ffffff;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 -2px 10px rgba(255,255,255,0.8);
+            box-shadow: 0 -3px 10px rgba(255, 255, 255, 0.9);
             z-index: -1;
         }
-        .wing.left { left: -35px; transform: rotate(-20deg); animation: flutterLeft 1.5s infinite alternate; }
-        .wing.right { right: -35px; transform: scaleX(-1) rotate(-20deg); animation: flutterRight 1.5s infinite alternate; }
+        
+        .wing.left { 
+            left: -40px; 
+            transform-origin: bottom right;
+            animation: flutterLeft 0.8s ease-in-out infinite alternate; 
+        }
+        
+        .wing.right { 
+            right: -40px; 
+            transform-origin: bottom left;
+            animation: flutterRight 0.8s ease-in-out infinite alternate; 
+        }
 
-        @keyframes flutterLeft { 0% { transform: rotate(-15deg); } 100% { transform: rotate(-30deg); } }
-        @keyframes flutterRight { 0% { transform: scaleX(-1) rotate(-15deg); } 100% { transform: scaleX(-1) rotate(-30deg); } }
+        @keyframes flutterLeft { 
+            0% { transform: rotate(-15deg) scaleY(1); } 
+            100% { transform: rotate(-35deg) scaleY(0.9); } 
+        }
+        
+        @keyframes flutterRight { 
+            0% { transform: scaleX(-1) rotate(-15deg) scaleY(1); } 
+            100% { transform: scaleX(-1) rotate(-35deg) scaleY(0.9); } 
+        }
 
         .wax-seal {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             background: #c2185b;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
-            font-size: 1rem;
+            font-size: 0.9rem;
             box-shadow: 0 3px 6px rgba(0,0,0,0.2);
             border: 2px dashed #f8bbd0;
         }
@@ -112,15 +174,16 @@
         .countdown-box {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 20px;
             width: 100%;
+            direction: ltr;
         }
 
         .time-block {
             background: #fdf2f8;
             border: 1px solid #fce7f3;
-            padding: 10px 8px;
+            padding: 10px 6px;
             border-radius: 12px;
             min-width: 65px;
             text-align: center;
@@ -136,6 +199,7 @@
             font-size: 0.7rem;
             color: #999;
             margin-top: 2px;
+            font-family: 'Cairo', sans-serif;
         }
 
         .status-badge {
@@ -158,32 +222,43 @@
             width: 80%;
             outline: none;
             font-size: 0.9rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             color: #333;
         }
 
-        /* نافذة الرسالة السريّة (صفحة بيضاء بخط ذهبي كالجواب الفاخر) */
+        /* نافذة الرسالة السريّة */
         .secret-modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.4);
             justify-content: center;
             align-items: center;
             z-index: 10;
             padding: 20px;
+            backdrop-filter: blur(3px);
         }
 
         .secret-content {
             background: #ffffff;
-            padding: 40px 25px;
-            border-radius: 20px;
+            padding: 35px 25px;
+            border-radius: 22px;
             max-width: 380px;
             width: 100%;
             text-align: center;
             border: 1px solid #e0e0e0;
             position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: scale(0.7);
+            opacity: 0;
+            animation: popupSmooth 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popupSmooth {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .close-btn {
@@ -193,11 +268,10 @@
             font-size: 1.2rem; cursor: pointer; color: #aaa;
         }
 
-        /* الحروف بخط ذهبي جميل كأنه جواب حقيقي */
         .gold-letter-text {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 2.2;
-            color: #b8860b; /* لون ذهبي دافئ وواضح */
+            color: #b8860b;
             font-weight: 700;
             margin-bottom: 25px;
             text-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
@@ -220,14 +294,22 @@
     <div class="container">
         <div class="card">
             
+            <!-- الكيكة مع حرف J فوقها -->
+            <div class="cake-container">
+                <div class="j-topping">J</div>
+                🎂
+            </div>
+
             <div class="header-title">انتظري العد التنازلي</div>
             <div class="header-subtitle">كل ثانية تقربنا من يومك...</div>
 
-            <!-- الجواب والختم والجناحات -->
-            <div class="envelope-wrapper" id="envelopeBtn" onclick="tryOpenLetter()">
-                <div class="wing left"></div>
-                <div class="wing right"></div>
-                <div class="wax-seal">💌</div>
+            <!-- الجواب مع الجناحات المتحركة -->
+            <div class="envelope-container" onclick="tryOpenLetter()">
+                <div class="envelope-wrapper">
+                    <div class="wing left"></div>
+                    <div class="wing right"></div>
+                    <div class="wax-seal">💌</div>
+                </div>
             </div>
 
             <!-- العد التنازلي -->
@@ -262,21 +344,19 @@
         </div>
     </div>
 
-    <!-- نافذة الرسالة المخفية (الصفحة البيضاء والخط الذهبي) -->
+    <!-- نافذة الرسالة المخفية -->
     <div class="secret-modal" id="secretModal">
         <div class="secret-content">
             <button class="close-btn" onclick="closeModal()">✕</button>
             <div class="gold-letter-text">
-                كل سنة و انتي طيبه يا جومانا<br>
-                قولت اعملك حاجه مميزه لعيد ميلادك 😔🖐🏿<br><br>
-                كل سنه و انتي طيبه 🥳🥳
+                كل سنة وأنتي طيبة يا جومانا 🎂✨<br>
+                قولت اعملك حاجه مميزه تخص عيد ميلادك
             </div>
             <button class="btn-open" onclick="closeModal()">إغلاق</button>
         </div>
     </div>
 
     <script>
-        // موعد الفتح: 29 نوفمبر 2026 الساعة 01:00 صباحاً (1 فجراً)
         const targetDate = new Date("November 29, 2026 01:00:00").getTime();
         const MY_PASS = "1129";
         let isTimeReached = false;
