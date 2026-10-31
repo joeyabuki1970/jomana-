@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+here<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -47,6 +47,8 @@
             flex-direction: column;
             align-items: center;
             position: relative;
+            min-height: 420px;
+            justify-content: space-between;
         }
 
         .header-title {
@@ -59,13 +61,13 @@
         .header-subtitle {
             font-size: 0.85rem;
             color: #888;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         /* حاوية الجواب مع أنيميشن الطيران والطفو المستمر */
         .envelope-container {
             position: relative;
-            margin: 15px auto 30px auto;
+            margin: 15px auto;
             animation: floatEnvelope 3s ease-in-out infinite;
             cursor: pointer;
         }
@@ -88,7 +90,6 @@
             box-shadow: 0 8px 20px rgba(233, 30, 99, 0.15);
         }
 
-        /* أنيميشن الجناحات المتحركة والطائرة */
         .wing {
             position: absolute;
             top: -18px;
@@ -141,7 +142,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             width: 100%;
             direction: ltr;
         }
@@ -149,20 +150,20 @@
         .time-block {
             background: #fdf2f8;
             border: 1px solid #fce7f3;
-            padding: 10px 6px;
+            padding: 8px 6px;
             border-radius: 12px;
-            min-width: 65px;
+            min-width: 60px;
             text-align: center;
         }
 
         .time-number {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 900;
             color: #ad1457;
         }
 
         .time-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: #999;
             margin-top: 2px;
             font-family: 'Cairo', sans-serif;
@@ -172,127 +173,117 @@
             background: #fdf2f8;
             border: 1px solid #f48fb1;
             color: #ad1457;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 15px;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
             text-align: center;
         }
 
         .pass-input {
             background: #fafafa;
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 8px;
             border-radius: 12px;
             text-align: center;
             width: 80%;
             outline: none;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
+            font-size: 0.85rem;
             color: #333;
         }
 
-        /* نافذة الرسالة السريّة */
-        .secret-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            padding: 20px;
-            backdrop-filter: blur(4px);
-        }
-
-        .secret-content {
-            background: #ffffff;
-            padding: 30px 20px;
-            border-radius: 22px;
-            max-width: 380px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #e0e0e0;
+        /* أنيميشن بناء الكيكة وتقع في الطبق زي الفيديو بالضبط */
+        .cake-scene {
             position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-            transform: scale(0.7);
-            opacity: 0;
-            animation: popupSmooth 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-        }
-
-        @keyframes popupSmooth {
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px; left: 15px;
-            background: none; border: none;
-            font-size: 1.2rem; cursor: pointer; color: #aaa;
-        }
-
-        /* أنيميشن بناء الكيكة وحرف J جوه الرسالة */
-        .cake-build-scene {
-            position: relative;
-            width: 160px;
-            height: 120px;
-            margin: 0 auto 15px auto;
+            width: 180px;
+            height: 130px;
+            margin: 10px auto;
             background: #4a2e35;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
         }
 
-        .cake-base {
+        /* الطبق السفلي */
+        .cake-plate {
             position: absolute;
-            bottom: 15px;
+            bottom: 10px;
+            width: 150px;
+            height: 8px;
+            background: #ddd;
+            border-radius: 4px;
+        }
+
+        /* الكيكة وهي نازلة من فوق */
+        .cake-body {
+            position: absolute;
+            bottom: 18px;
             width: 120px;
             height: 45px;
-            background: #f5f5f5;
+            background: #fdf2f8;
+            border: 2px solid #f48fb1;
             border-radius: 6px;
-            animation: dropIn 0.8s ease forwards;
+            animation: fallCake 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        .cake-cream {
+        /* الكريمة فوق الكيكة */
+        .cake-topping-cream {
             position: absolute;
-            bottom: 45px;
+            bottom: 61px;
             width: 120px;
-            height: 12px;
+            height: 10px;
             background: #ff4081;
             border-radius: 4px;
-            animation: dropCream 0.8s ease 0.4s forwards;
+            animation: fallCream 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards;
             opacity: 0;
         }
 
-        .cake-j-letter {
+        /* الشمعة والشمراخ */
+        .cake-candle {
             position: absolute;
-            bottom: 22px;
-            right: 25px;
-            font-size: 1.2rem;
+            bottom: 71px;
+            width: 8px;
+            height: 25px;
+            background: #ffeb3b;
+            border-radius: 2px;
+            animation: fallCandle 0.5s ease 0.6s forwards;
+            opacity: 0;
+        }
+
+        /* حرف J على الكيكة من الجنب */
+        .cake-letter-j {
+            position: absolute;
+            bottom: 28px;
+            right: 30px;
+            font-size: 1.1rem;
             font-weight: 900;
             color: #ad1457;
             background: #fff;
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            animation: fadeInLetter 0.5s ease 1s forwards;
+            animation: fadeInLetter 0.4s ease 0.9s forwards;
             opacity: 0;
-            z-index: 5;
         }
 
-        @keyframes dropIn {
+        @keyframes fallCake {
+            0% { transform: translateY(-120px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fallCream {
             0% { transform: translateY(-100px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes dropCream {
+        @keyframes fallCandle {
             0% { transform: translateY(-80px); opacity: 0; }
             100% { transform: translateY(0); opacity: 1; }
         }
@@ -302,17 +293,17 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        .gold-letter-text {
-            font-size: 1.05rem;
-            line-height: 2;
+        .gold-text {
+            font-size: 1.1rem;
+            line-height: 2.2;
             color: #b8860b;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin: 15px 0;
             text-shadow: 0 1px 2px rgba(184, 134, 11, 0.15);
-            min-height: 75px;
+            min-height: 70px;
         }
 
-        .btn-next {
+        .btn-action {
             background: #ad1457;
             color: #fff;
             border: none;
@@ -321,18 +312,20 @@
             font-weight: 700;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(173, 20, 87, 0.3);
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="card">
-            
-            <div class="header-title">انتظري العد التنازلي</div>
-            <div class="header-subtitle">كل ثانية تقربنا من يومك...</div>
+        <!-- الصفحة الأولى: العد التنازلي والجواب -->
+        <div class="card" id="page1">
+            <div>
+                <div class="header-title">انتظري العد التنازلي</div>
+                <div class="header-subtitle">كل ثانية تقربنا من يومك...</div>
+            </div>
 
-            <!-- الجواب مع الجناحات المتحركة -->
             <div class="envelope-container" onclick="tryOpenLetter()">
                 <div class="envelope-wrapper">
                     <div class="wing left"></div>
@@ -341,55 +334,71 @@
                 </div>
             </div>
 
-            <!-- العد التنازلي -->
-            <div class="countdown-box" id="countdownContainer">
-                <div class="time-block">
-                    <div class="time-number" id="days">00</div>
-                    <div class="time-label">يوم</div>
+            <div>
+                <div class="countdown-box" id="countdownContainer">
+                    <div class="time-block">
+                        <div class="time-number" id="days">00</div>
+                        <div class="time-label">يوم</div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-number" id="hours">00</div>
+                        <div class="time-label">ساعة</div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-number" id="minutes">00</div>
+                        <div class="time-label">دقيقة</div>
+                    </div>
+                    <div class="time-block">
+                        <div class="time-number" id="seconds">00</div>
+                        <div class="time-label">ثانية</div>
+                    </div>
                 </div>
-                <div class="time-block">
-                    <div class="time-number" id="hours">00</div>
-                    <div class="time-label">ساعة</div>
+
+                <div class="status-badge" id="statusText">
+                    ⏳ سيتم فتح الرسالة يوم 29 نوفمبر الساعة 1:00 فجراً
                 </div>
-                <div class="time-block">
-                    <div class="time-number" id="minutes">00</div>
-                    <div class="time-label">دقيقة</div>
-                </div>
-                <div class="time-block">
-                    <div class="time-number" id="seconds">00</div>
-                    <div class="time-label">ثانية</div>
+
+                <div style="width: 100%; display: flex; justify-content: center;">
+                    <input type="password" id="passInput" class="pass-input" placeholder="شفرة الدخول (1129)..." oninput="checkPass()">
                 </div>
             </div>
-
-            <div class="status-badge" id="statusText">
-                ⏳ سيتم فتح الرسالة تلقائياً يوم 29 نوفمبر الساعة 1:00 فجراً
-            </div>
-
-            <!-- خانة إدخال الباسورد للاختبار (1129) -->
-            <div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
-                <input type="password" id="passInput" class="pass-input" placeholder="أدخل شفرة الدخول (1129)..." oninput="checkPass()">
-            </div>
-
         </div>
-    </div>
 
-    <!-- نافذة الرسالة المخفية -->
-    <div class="secret-modal" id="secretModal">
-        <div class="secret-content">
-            <button class="close-btn" onclick="closeModal()">✕</button>
-            
-            <!-- أنيميشن بناء الكيكة وحرف J -->
-            <div class="cake-build-scene">
-                <div class="cake-base"></div>
-                <div class="cake-cream"></div>
-                <div class="cake-j-letter">J</div>
+        <!-- الصفحة التانية: الكيكة وهي بتنزل والجملة الأولى -->
+        <div class="card" id="page2" style="display: none;">
+            <div>
+                <div class="header-title" style="font-size: 1.2rem;">رسالة خاصة 🎂</div>
             </div>
 
-            <div class="gold-letter-text" id="messageBox">
+            <!-- أنيميشن بناء الكيكة المظبوط زي الفيديو -->
+            <div class="cake-scene">
+                <div class="cake-plate"></div>
+                <div class="cake-body"></div>
+                <div class="cake-topping-cream"></div>
+                <div class="cake-candle"></div>
+                <div class="cake-letter-j">J</div>
+            </div>
+
+            <div class="gold-text">
                 كل سنة وأنتي طيبة يا جومانا 🎂✨
             </div>
-            
-            <button class="btn-next" id="nextStepBtn" onclick="nextMessageStep()">التالي ⬅</button>
+
+            <button class="btn-action" onclick="goToPage3()">التالي ⬅</button>
+        </div>
+
+        <!-- الصفحة التالتة: الجملة التانية والختام -->
+        <div class="card" id="page3" style="display: none;">
+            <div>
+                <div class="header-title" style="font-size: 1.2rem;">هدية مميزة ✨</div>
+            </div>
+
+            <div style="font-size: 3.5rem; margin: 20px 0;">🎁</div>
+
+            <div class="gold-text">
+                قولت اعملك حاجه مميزه تخص عيد ميلادك 🥳
+            </div>
+
+            <button class="btn-action" onclick="resetToHome()">إغلاق 🤍</button>
         </div>
     </div>
 
@@ -397,12 +406,6 @@
         const targetDate = new Date("November 29, 2026 01:00:00").getTime();
         const MY_PASS = "1129";
         let isTimeReached = false;
-        let messageStep = 0;
-
-        const messages = [
-            "كل سنة وأنتي طيبة يا جومانا 🎂✨",
-            "قولت اعملك حاجه مميزه تخص عيد ميلادك 🥳"
-        ];
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -434,7 +437,7 @@
 
         function tryOpenLetter() {
             if (isTimeReached) {
-                openSecretModal();
+                openPage2();
             } else {
                 alert("🔒 لم يحن موعد فتح الرسالة بعد! (أو استخدم شفرة الدخول السرية 1129 بالأسفل)");
             }
@@ -443,31 +446,25 @@
         function checkPass() {
             const val = document.getElementById("passInput").value.trim();
             if (val === MY_PASS) {
-                openSecretModal();
+                openPage2();
             }
         }
 
-        function openSecretModal() {
-            messageStep = 0;
-            document.getElementById("messageBox").innerText = messages[messageStep];
-            document.getElementById("secretModal").style.display = "flex";
+        function openPage2() {
+            document.getElementById("page1").style.display = "none";
+            document.getElementById("page2").style.display = "flex";
+            document.getElementById("page3").style.display = "none";
         }
 
-        function nextMessageStep() {
-            messageStep++;
-            if (messageStep < messages.length) {
-                document.getElementById("messageBox").innerText = messages[messageStep];
-                if (messageStep === messages.length - 1) {
-                    document.getElementById("nextStepBtn").innerText = "إغلاق 🤍";
-                }
-            } else {
-                closeModal();
-            }
+        function goToPage3() {
+            document.getElementById("page2").style.display = "none";
+            document.getElementById("page3").style.display = "flex";
         }
 
-        function closeModal() {
-            document.getElementById("secretModal").style.display = "none";
-            document.getElementById("nextStepBtn").innerText = "التالي ⬅";
+        function resetToHome() {
+            document.getElementById("passInput").value = "";
+            document.getElementById("page3").style.display = "none";
+            document.getElementById("page1").style.display = "flex";
         }
     </script>
 </body>
